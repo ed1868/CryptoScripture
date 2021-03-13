@@ -1,76 +1,81 @@
 const { assert } = require('chai')
 
-const Decentragram = artifacts.require('./Decentragram.sol')
+const CryptoScripture = artifacts.require('./CryptoScripture.sol')
 
 require('chai')
   .use(require('chai-as-promised'))
   .should()
 
-contract('Decentragram', ([deployer, author, tipper]) => {
-  let decentragram
+contract('CryptoScripture', ([deployer, author, tipper]) => {
+  let cryptoScripture
 
   before(async () => {
-    decentragram = await Decentragram.deployed()
+    cryptoScripture = await CryptoScripture.deployed()
   })
 
   describe('deployment', async () => {
+
+    //one
     it('deploys successfully', async () => {
-      const address = await decentragram.address
+      const address = await cryptoScripture.address
       assert.notEqual(address, 0x0)
       assert.notEqual(address, '')
       assert.notEqual(address, null)
       assert.notEqual(address, undefined)
     })
+    //two
+    describe('scriptures', async () => {
+      let result, scriptureCount
 
-    describe('images', async () => {
-      let result, imageCount
-
-      const hash = "hashingitOut";
+      const hash = "hashValue";
 
       before(async () => {
-        result = await decentragram.uploadImage(hash, 'Tony Stark Ironman Suite V4', { from: author })
-        imageCount = await decentragram.imageCount()
+        result = await cryptoScripture.uploadScripture(hash, 'If', 'If all I wanted to do is sit and talk to you. Would you listen?', { from: author })
+        scriptureCount = await cryptoScripture.scripturesCount()
       })
 
+      //three
 
-      it('create images', async () => {
+      it('create scriptures', async () => {
         // SUCCESS
 
-        assert.equal(imageCount, 1)
+        assert.equal(scriptureCount, 1)
         const event = result.logs[0].args;
-        assert.equal(event.id.toNumber(), imageCount.toNumber(), 'id is correct')
+        assert.equal(event.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
         assert.equal(event.hash, hash, 'Hash is correct')
-        assert.equal(event.description, 'Tony Stark Ironman Suite V4', 'description is correct')
+        assert.equal(event.title, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is correct')
+        assert.equal(event.text, 'If', 'Title is correct')
         assert.equal(event.tipAmount, '0', 'tip amount is correct')
         assert.equal(event.author, author, 'author is correct')
         console.log(result.logs[0].args)
 
         // FAILURE TEST : IMAGE MUST HAVE HASH
-        await decentragram.uploadImage('', 'Tony Stark Ironman Suite V4', { from: author }).should.be.rejected;
+        await cryptoScripture.uploadScripture('', 'Tony Stark Ironman Suite V4', { from: author }).should.be.rejected;
 
         // FAILURE TEST : IMAGE MUST HAVE DESCRIPTION
-        await decentragram.uploadImage('Elon Musks DNA', '', { from: author }).should.be.rejected;
+        await cryptoScripture.uploadScripture('Elon Musks DNA', '', { from: author }).should.be.rejected;
 
       })
       //CHECK FROM STRUCT
+      //four
       it('lists images', async () => {
-        const image = await decentragram.images(imageCount);
+        const scripture = await cryptoScripture.images(scriptureCount);
 
-        assert.equal(image.id.toNumber(), imageCount.toNumber(), 'id is correct')
-        assert.equal(image.hash, hash, 'Hash is correct')
-        assert.equal(image.description, 'Tony Stark Ironman Suite V4', 'description is correct')
-        assert.equal(image.tipAmount, '0', 'tip amount is correct')
-        assert.equal(image.author, author, 'author is correct')
+        assert.equal(scripture.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
+        assert.equal(scripture.hash, hash, 'Hash is correct')
+        assert.equal(scripture.text, 'Tony Stark Ironman Suite V4', 'description is correct')
+        assert.equal(scripture.tipAmount, '0', 'tip amount is correct')
+        assert.equal(scripture.author, author, 'author is correct')
       })
 
-
+      //five
       it('allows users to tip images', async () => {
         // Track the author balance before purchase
         let oldAuthorBalance
         oldAuthorBalance = await web3.eth.getBalance(author)
         oldAuthorBalance = new web3.utils.BN(oldAuthorBalance)
 
-        result = await decentragram.tipImageOwner(imageCount, { from: tipper, value: web3.utils.toWei('1', 'Ether') })
+        result = await cryptoScripture.tipImageOwner(imageCount, { from: tipper, value: web3.utils.toWei('1', 'Ether') })
 
         // SUCCESS
         const event = result.logs[0].args
@@ -97,7 +102,7 @@ contract('Decentragram', ([deployer, author, tipper]) => {
         assert.equal(newAuthorBalance.toString(), expectedBalance.toString())
 
         // FAILURE: Tries to tip a image that does not exist
-        await decentragram.tipImageOwner(99, { from: tipper, value: web3.utils.toWei('1', 'Ether') }).should.be.rejected;
+        await cryptoScripture.tipImageOwner(99, { from: tipper, value: web3.utils.toWei('1', 'Ether') }).should.be.rejected;
       })
     })
 
@@ -105,10 +110,10 @@ contract('Decentragram', ([deployer, author, tipper]) => {
 
   })
 
-
+  //three
   it('has a name', async () => {
-    const name = await decentragram.name()
-    assert.equal(name, 'Nomads')
+    const name = await cryptoScripture.name()
+    assert.equal(name, 'Nomads Scriptures')
   })
 })
 
