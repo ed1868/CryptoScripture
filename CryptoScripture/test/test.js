@@ -58,30 +58,32 @@ contract('CryptoScripture', ([deployer, author, tipper]) => {
       })
       //CHECK FROM STRUCT
       //four
-      it('lists images', async () => {
-        const scripture = await cryptoScripture.images(scriptureCount);
+      it('lists Scriptures', async () => {
+        const scripture = await cryptoScripture.scriptures(scriptureCount);
 
         assert.equal(scripture.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
         assert.equal(scripture.hash, hash, 'Hash is correct')
-        assert.equal(scripture.text, 'Tony Stark Ironman Suite V4', 'description is correct')
+        assert.equal(scripture.title, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is correct')
+        assert.equal(scripture.text, 'If', 'Title is correct')
         assert.equal(scripture.tipAmount, '0', 'tip amount is correct')
         assert.equal(scripture.author, author, 'author is correct')
       })
 
       //five
-      it('allows users to tip images', async () => {
+      it('allows users to tip scriptures', async () => {
         // Track the author balance before purchase
         let oldAuthorBalance
         oldAuthorBalance = await web3.eth.getBalance(author)
         oldAuthorBalance = new web3.utils.BN(oldAuthorBalance)
 
-        result = await cryptoScripture.tipImageOwner(imageCount, { from: tipper, value: web3.utils.toWei('1', 'Ether') })
+        result = await cryptoScripture.tipScriptureOwner(scriptureCount, { from: tipper, value: web3.utils.toWei('1', 'Ether') })
 
         // SUCCESS
         const event = result.logs[0].args
-        assert.equal(event.id.toNumber(), imageCount.toNumber(), 'id is correct')
+        assert.equal(event.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
         assert.equal(event.hash, hash, 'Hash is correct')
         //BUG TO FIX ON THIS DISCRIPTION
+        assert.equal(event.title, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is correct');
         // assert.equal(event.description, 'Tony Stark Ironman Suite V4', 'description is correct')
 
 
@@ -93,16 +95,16 @@ contract('CryptoScripture', ([deployer, author, tipper]) => {
         newAuthorBalance = await web3.eth.getBalance(author)
         newAuthorBalance = new web3.utils.BN(newAuthorBalance)
 
-        let tipImageOwner
-        tipImageOwner = web3.utils.toWei('1', 'Ether')
-        tipImageOwner = new web3.utils.BN(tipImageOwner)
+        let tipScriptureOwner
+        tipScriptureOwner = web3.utils.toWei('1', 'Ether')
+        tipScriptureOwner = new web3.utils.BN(tipScriptureOwner)
 
-        const expectedBalance = oldAuthorBalance.add(tipImageOwner)
+        const expectedBalance = oldAuthorBalance.add(tipScriptureOwner)
 
         assert.equal(newAuthorBalance.toString(), expectedBalance.toString())
 
         // FAILURE: Tries to tip a image that does not exist
-        await cryptoScripture.tipImageOwner(99, { from: tipper, value: web3.utils.toWei('1', 'Ether') }).should.be.rejected;
+        await cryptoScripture.tipScriptureOwner(99, { from: tipper, value: web3.utils.toWei('1', 'Ether') }).should.be.rejected;
       })
     })
 
