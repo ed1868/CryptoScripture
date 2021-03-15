@@ -5,7 +5,8 @@ import ScriptureBox from './Scriptures/ScriptureBox.js'
 class Main extends Component {
 
   render() {
-console.log("MAIN PROPS ", this.props.testEngine)
+
+    console.log('this is the api data', this.props)
 
     return (
       <div className="container-fluid mt-5">
@@ -13,10 +14,10 @@ console.log("MAIN PROPS ", this.props.testEngine)
 
         <div className="row">
           <div className="col-md-6">
-            {this.props.testEngine.map((payload, key) => {
+            {this.props.scriptures.map((payload, key) => {
               console.log(`FIRST PAYLOAD : ${payload}`);
               return (
-                <ScriptureBox apiUserData={this.props.apiUserData[key]} />
+                <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]} />
               )
             })}
 
@@ -29,7 +30,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
               <h2 className="text-center pb-5">Submit Your Scripture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
-                
+
                 const title = this.scriptureTitle.value
                 console.log('helloooooo ', title)
                 const text = this.scriptureText.value
@@ -71,10 +72,10 @@ console.log("MAIN PROPS ", this.props.testEngine)
                   </input>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
+                <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
               <p>&nbsp;</p>
-              {this.props.images.map((image, key) => {
+              {/* {this.props.images.map((image, key) => {
                 return (
 
                   <div className="card mb-4" key={key} >
@@ -112,7 +113,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
                     </ul>
                   </div>
                 )
-              })}
+              })} */}
             </div>
           </main>
         </div>

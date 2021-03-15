@@ -44,13 +44,13 @@ class App extends Component {
     if (networkData) {
       const cryptoScripture = new web3.eth.Contract(CryptoScripture.abi, networkData.address)
 
-      console.log('sdjkfhdjskfhdshkj 0000-----', cryptoScripture)
+
       this.setState({ cryptoScripture })
       const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
       this.setState({ scriptureCount })
       // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
-console.log('Im on the fcking look ', scriptureCount[i])
+        // 
         const scripture = await cryptoScripture.methods.scriptures(i).call()
 
         this.setState({
@@ -81,9 +81,12 @@ console.log('Im on the fcking look ', scriptureCount[i])
     }
   }
 
+   refreshPage() {
+    window.location.reload(true);
+  }
+
   uploadScripture = payload => {
     console.log("Submitting file to ipfs...")
-    console.log('PAYLOAD----', payload);
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
@@ -93,9 +96,11 @@ console.log('Im on the fcking look ', scriptureCount[i])
       }
 
       this.setState({ loading: true })
-      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title,payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
+        this.setState({reload: true})
       })
+      
     })
   }
 
@@ -141,7 +146,8 @@ console.log('Im on the fcking look ', scriptureCount[i])
       cryptoScripture: null,
       images: [],
       users: [],
-      loading: true
+      loading: true,
+      reload:false
     }
 
 
@@ -151,7 +157,6 @@ console.log('Im on the fcking look ', scriptureCount[i])
     this.getUser = this.getUser.bind(this)
 
     this.state.testEngine.forEach(element => {
-
       this.getUser()
     });
 
@@ -159,6 +164,9 @@ console.log('Im on the fcking look ', scriptureCount[i])
   }
 
   render() {
+    if(this.state.reload == true){
+      this.refreshPage();
+    }
     return (
       <div>
         <Navbar account={this.state.account} />
@@ -166,7 +174,7 @@ console.log('Im on the fcking look ', scriptureCount[i])
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
             testEngine={this.state.testEngine}
-            images={this.state.scriptures}
+            scriptures={this.state.scriptures}
             captureFile={this.captureFile}
             uploadScripture={this.uploadScripture}
             tipImageOwner={this.tipImageOwuploadImagener}
