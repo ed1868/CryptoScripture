@@ -104,21 +104,52 @@ class App extends Component {
     })
   }
 
+  getUser() {
+    fetch('https://randomuser.me/api/')
+      .then(response => {
+        if (response.ok) return response.json();
+        throw new Error('Request failed.');
+      })
+      .then(data => {
+        console.log('THIS IS THE USER DATAS',data)
+
+        this.setState({
+          users: [
+            {
+              name: data.results[0].name,
+              image: data.results[0].picture.medium,
+              tweet: data.results[0].email,
+            },
+            ...this.state.users,
+          ]
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   constructor(props) {
     super(props)
     this.state = {
       account: '',
       scriptures: [],
-      testEngine:["one", "two","three"],
+      testEngine: ["one", "two", "three"],
       decentragram: null,
       cryptoScripture: null,
       images: [],
       loading: true
     }
 
+
     this.uploadImage = this.uploadImage.bind(this)
     this.tipImageOwner = this.tipImageOwner.bind(this)
     this.captureFile = this.captureFile.bind(this)
+    this.getUser = this.getUser.bind(this)
+
+    this.getUser()
+
+
   }
 
   render() {

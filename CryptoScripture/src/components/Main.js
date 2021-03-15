@@ -6,6 +6,7 @@ class Main extends Component {
 
   render() {
     
+    
     return (
       <div className="container-fluid mt-5">
         {/* <ScriptureBox />
