@@ -1,1 +1,24 @@
 /*  */
+
+ .brand_name {
+    border: 1px solid #1DA1F2;;
+    border-radius: 150px;
+    height: 150px;
+    width: 150px;
+    margin: 15px auto;
+  }
+  .brand_name h1 {
+    color: black;
+    text-align: center;
+    padding-top:50px;
+    /* margin: 59px 0; */
+  }
+
+  #file{
+    /* opacity: 0; */
+    /* background-color: red !important; */
+margin-left: 33%;
+    /* width: 0.1px; */
+    /* height: 0.1px; */
+    /* position: absolute; */
+  }
