@@ -1,4 +1,5 @@
 import Decentragram from '../abis/Decentragram.json'
+import CryptoScripture from '../abis/CryptoScripture.json'
 import React, { Component } from 'react';
 import Identicon from 'identicon.js';
 import Navbar from './Navbar'
@@ -34,27 +35,32 @@ class App extends Component {
     const web3 = window.web3
     // Load account
     const accounts = await web3.eth.getAccounts()
+
+    console.log(`THESE ARE THE ACCOUNTS : ${accounts}`);
     this.setState({ account: accounts[0] })
     // Network ID
     const networkId = await web3.eth.net.getId()
-    const networkData = Decentragram.networks[networkId]
-    if(networkData) {
-      const decentragram = new web3.eth.Contract(Decentragram.abi, networkData.address)
-      this.setState({ decentragram })
-      const imagesCount = await decentragram.methods.imageCount().call()
-      this.setState({ imagesCount })
+    const networkData = CryptoScripture.networks[networkId]
+    if (networkData) {
+      const cryptoScripture = new web3.eth.Contract(CryptoScripture.abi, networkData.address)
+      this.setState({ cryptoScripture })
+      const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
+      this.setState({ scriptureCount })
       // Load images
-      for (var i = 1; i <= imagesCount; i++) {
-        const image = await decentragram.methods.images(i).call()
+      for (var i = 1; i <= scriptureCount; i++) {
+
+        const scripture = await cryptoScripture.methods.scriptures(i).call()
+
         this.setState({
-          images: [...this.state.images, image]
+          scripture: [...this.state.scriptures, scripture]
         })
       }
-      // Sort images. Show highest tipped images first
+      // Sort scriptures. Show highest tipped scriptures first
+
       this.setState({
-        images: this.state.images.sort((a,b) => b.tipAmount - a.tipAmount )
+        scripture: this.state.scriptures.sort((a, b) => b.tipAmount - a.tipAmount)
       })
-      this.setState({ loading: false})
+      this.setState({ loading: false })
     } else {
       window.alert('Decentragram contract not deployed to detected network.')
     }
@@ -79,7 +85,7 @@ class App extends Component {
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
-      if(error) {
+      if (error) {
         console.error(error)
         return
       }
@@ -102,7 +108,10 @@ class App extends Component {
     super(props)
     this.state = {
       account: '',
+      scriptures: [],
+      testEngine:["one", "two","three"],
       decentragram: null,
+      cryptoScripture: null,
       images: [],
       loading: true
     }
@@ -119,11 +128,12 @@ class App extends Component {
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
-              images={this.state.images}
-              captureFile={this.captureFile}
-              uploadImage={this.uploadImage}
-              tipImageOwner={this.tipImageOwner}
-            />
+            testEngine={this.state.testEngine}
+            images={this.state.images}
+            captureFile={this.captureFile}
+            uploadImage={this.uploadImage}
+            tipImageOwner={this.tipImageOwner}
+          />
         }
       </div>
     );

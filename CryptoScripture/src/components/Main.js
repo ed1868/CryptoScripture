@@ -1,16 +1,28 @@
 import React, { Component } from 'react';
-import Identicon from 'identicon.js';
 
+import Identicon from 'identicon.js';
+import ScriptureBox  from './Scriptures/ScriptureBox.js'
 class Main extends Component {
 
   render() {
     return (
       <div className="container-fluid mt-5">
+        {/* <ScriptureBox />
+        <ScriptureBox /> */}
         <div className="row">
-          <main role="main" className="col-lg-12 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
+          <div className="col-md-6">
+            {this.props.testEngine.map(payload => {
+              console.log(`FIRST PAYLOAD : ${payload}`);
+              return (
+                <ScriptureBox className="scriptOutline"/>
+              )
+            })}
+          {/* <ScriptureBox /> */}
+          </div>
+          <main role="main" className="col-lg-6 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
             <div className="content mr-auto ml-auto">
               <p>&nbsp;</p>
-              <h2>Share Image</h2>
+              <h2 className="text-center pb-5">Submit Your Scripture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
                 const description = this.imageDescription.value
@@ -32,7 +44,9 @@ class Main extends Component {
               <p>&nbsp;</p>
               {this.props.images.map((image, key) => {
                 return (
+
                   <div className="card mb-4" key={key} >
+                    
                     <div className="card-header">
                       <img
                         className='mr-2'

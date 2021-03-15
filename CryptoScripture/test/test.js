@@ -83,7 +83,7 @@ contract('CryptoScripture', ([deployer, author, tipper]) => {
         assert.equal(event.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
         assert.equal(event.hash, hash, 'Hash is correct')
         //BUG TO FIX ON THIS DISCRIPTION
-        assert.equal(event.title, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is correct');
+        assert.equal(event.title, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is pinga');
         // assert.equal(event.description, 'Tony Stark Ironman Suite V4', 'description is correct')
 
 
