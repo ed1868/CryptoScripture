@@ -43,8 +43,8 @@ contract CryptoScripture {
     // CREATE SCRIPTURE
     function uploadScripture(
         string memory _scripHash,
-        string memory _text,
-        string memory _title
+        string memory _title,
+        string memory _text
     ) public {
         //ENSURE THAT SCRIPTURE HASH EXISTS
         require(bytes(_scripHash).length > 0);

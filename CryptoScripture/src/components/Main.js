@@ -29,8 +29,16 @@ console.log("MAIN PROPS ", this.props.testEngine)
               <h2 className="text-center pb-5">Submit Your Scripture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
-                const description = this.imageDescription.value
-                this.props.uploadImage(description)
+                
+                const title = this.scriptureTitle.value
+                console.log('helloooooo ', title)
+                const text = this.scriptureText.value
+
+                let payload = {
+                  title,
+                  text
+                }
+                this.props.uploadScripture(payload)
               }} >
 
                 {/* <div className="brand_name"> */}
@@ -45,6 +53,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
 
                   <input
                     id="scriptureTitle"
+                    ref={(input) => { this.scriptureTitle = input }}
                     type="text"
                     className="form-control mt-4 "
                     placeholder="Scripture Title"
@@ -54,6 +63,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
 
                   <input
                     id="scriptureText"
+                    ref={(input) => { this.scriptureText = input }}
                     type="text"
                     className="form-control mt-4"
                     placeholder="Scripture Text"

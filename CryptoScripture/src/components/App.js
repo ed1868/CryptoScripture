@@ -43,22 +43,24 @@ class App extends Component {
     const networkData = CryptoScripture.networks[networkId]
     if (networkData) {
       const cryptoScripture = new web3.eth.Contract(CryptoScripture.abi, networkData.address)
+
+      console.log('sdjkfhdjskfhdshkj 0000-----', cryptoScripture)
       this.setState({ cryptoScripture })
       const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
       this.setState({ scriptureCount })
       // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
-
+console.log('Im on the fcking look ', scriptureCount[i])
         const scripture = await cryptoScripture.methods.scriptures(i).call()
 
         this.setState({
-          scripture: [...this.state.scriptures, scripture]
+          scriptures: [...this.state.scriptures, scripture]
         })
       }
       // Sort scriptures. Show highest tipped scriptures first
 
       this.setState({
-        scripture: this.state.scriptures.sort((a, b) => b.tipAmount - a.tipAmount)
+        scriptures: this.state.scriptures.sort((a, b) => b.tipAmount - a.tipAmount)
       })
       this.setState({ loading: false })
     } else {
@@ -79,9 +81,9 @@ class App extends Component {
     }
   }
 
-  uploadImage = description => {
+  uploadScripture = payload => {
     console.log("Submitting file to ipfs...")
-
+    console.log('PAYLOAD----', payload);
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
@@ -91,7 +93,7 @@ class App extends Component {
       }
 
       this.setState({ loading: true })
-      this.state.decentragram.methods.uploadImage(result[0].hash, description).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title,payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
       })
     })
@@ -111,7 +113,7 @@ class App extends Component {
         throw new Error('Request failed.');
       })
       .then(data => {
-        console.log('THIS IS THE USER DATAS',data)
+        console.log('THIS IS THE USER DATAS', data)
 
         this.setState({
           users: [
@@ -138,21 +140,21 @@ class App extends Component {
       decentragram: null,
       cryptoScripture: null,
       images: [],
-      users:[],
+      users: [],
       loading: true
     }
 
 
-    this.uploadImage = this.uploadImage.bind(this)
+    this.uploadScripture = this.uploadScripture.bind(this)
     this.tipImageOwner = this.tipImageOwner.bind(this)
     this.captureFile = this.captureFile.bind(this)
     this.getUser = this.getUser.bind(this)
 
     this.state.testEngine.forEach(element => {
-      
-      this.getUser()  
+
+      this.getUser()
     });
-    
+
 
   }
 
@@ -164,11 +166,12 @@ class App extends Component {
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
             testEngine={this.state.testEngine}
-            images={this.state.images}
+            images={this.state.scriptures}
             captureFile={this.captureFile}
-            uploadImage={this.uploadImage}
-            tipImageOwner={this.tipImageOwner}
-            apiUserData = {this.state.users}
+            uploadScripture={this.uploadScripture}
+            tipImageOwner={this.tipImageOwuploadImagener}
+            apiUserData={this.state.users}
+
           />
         }
       </div>

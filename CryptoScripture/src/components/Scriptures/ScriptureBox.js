@@ -12,7 +12,9 @@ const ScriptureBox = (props) => {
 
 const Image = (props) => {
   return (
-    <img src={props.image} alt="Logo" className="picture">
+    
+    // src={props.image}
+    <img src={`https://ipfs.infura.io/ipfs/${props.image.hash}`} alt="Logo" className="picture">
     </img>
   )
 }
