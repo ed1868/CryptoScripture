@@ -91,3 +91,12 @@
     letter-spacing: -0.6px;
     color: #ffffff;
   }
+.tip{
+  color:#14171A
+}
+.tipButton{
+  /* background-color: #011926 !important; */
+}
+  .tipButton:hover{
+    background-color: #1DA1F2;
+}

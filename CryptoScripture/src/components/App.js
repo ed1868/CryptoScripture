@@ -46,7 +46,7 @@ class App extends Component {
       this.setState({ cryptoScripture })
       const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
       this.setState({ scriptureCount })
-      // Load images
+      // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
 
         const scripture = await cryptoScripture.methods.scriptures(i).call()
@@ -118,7 +118,7 @@ class App extends Component {
             {
               name: data.results[0].name,
               image: data.results[0].picture.medium,
-              tweet: data.results[0].email,
+              handle: data.results[0].login.username,
             },
             ...this.state.users,
           ]
@@ -138,6 +138,7 @@ class App extends Component {
       decentragram: null,
       cryptoScripture: null,
       images: [],
+      users:[],
       loading: true
     }
 
@@ -147,8 +148,11 @@ class App extends Component {
     this.captureFile = this.captureFile.bind(this)
     this.getUser = this.getUser.bind(this)
 
-    this.getUser()
-
+    this.state.testEngine.forEach(element => {
+      
+      this.getUser()  
+    });
+    
 
   }
 
@@ -164,6 +168,7 @@ class App extends Component {
             captureFile={this.captureFile}
             uploadImage={this.uploadImage}
             tipImageOwner={this.tipImageOwner}
+            apiUserData = {this.state.users}
           />
         }
       </div>

@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 
 import Identicon from 'identicon.js';
-import ScriptureBox  from './Scriptures/ScriptureBox.js'
+import ScriptureBox from './Scriptures/ScriptureBox.js'
 class Main extends Component {
 
   render() {
-    
-    
+console.log("MAIN PROPS ", this.props.testEngine)
+
     return (
       <div className="container-fluid mt-5">
-        {/* <ScriptureBox />
-        <ScriptureBox /> */}
+
+
         <div className="row">
           <div className="col-md-6">
-            {this.props.testEngine.map(payload => {
+            {this.props.testEngine.map((payload, key) => {
               console.log(`FIRST PAYLOAD : ${payload}`);
               return (
-                <ScriptureBox className="scriptOutline"/>
+                <ScriptureBox apiUserData={this.props.apiUserData[key]} />
               )
             })}
-          {/* <ScriptureBox /> */}
+
           </div>
 
-          
+
           <main role="main" className="col-lg-6 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
             <div className="content mr-auto ml-auto">
               <p>&nbsp;</p>
@@ -33,32 +33,32 @@ class Main extends Component {
                 this.props.uploadImage(description)
               }} >
 
-<div className="brand_name">
-    <h1></h1>
-  </div>
-  <input type='file' id="file" accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
-                
+                {/* <div className="brand_name"> */}
+                <img className="brand_name mb-2" src={this.props.apiUserData[0].image} />
+                {/* </div> */}
+                <input type='file' id="file" accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
+
                 <div className="form-group mr-sm-2">
-                {/* <label> 
+                  {/* <label> 
                   Scripture Title :
                 </label> */}
 
-                <input
-                id="scriptureTitle"
-                type="text"
-                className="form-control mt-4 "
-                placeholder="Scripture Title"
-                required>
-                </input>
-             
+                  <input
+                    id="scriptureTitle"
+                    type="text"
+                    className="form-control mt-4 "
+                    placeholder="Scripture Title"
+                    required>
+                  </input>
 
-                <input
-                id="scriptureText"
-                type="text"
-                className="form-control mt-4"
-                placeholder="Scripture Text"
-                required>
-                </input>
+
+                  <input
+                    id="scriptureText"
+                    type="text"
+                    className="form-control mt-4"
+                    placeholder="Scripture Text"
+                    required>
+                  </input>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
@@ -68,7 +68,7 @@ class Main extends Component {
                 return (
 
                   <div className="card mb-4" key={key} >
-                    
+
                     <div className="card-header">
                       <img
                         className='mr-2'
