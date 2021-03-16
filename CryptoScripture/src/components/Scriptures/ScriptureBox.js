@@ -11,7 +11,6 @@ const ScriptureBox = (props) => {
 }
 
 const Image = (props) => {
-
   return (
     
     // src={props.image}

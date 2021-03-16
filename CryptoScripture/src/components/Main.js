@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 
 import Identicon from 'identicon.js';
@@ -6,8 +7,7 @@ import addIcon from './assets/addTwo.png'
 class Main extends Component {
 
   render() {
-
-    console.log('this is the api data', this.props)
+console.log("MAIN PROPS ", this.props.testEngine)
 
     return (
       <div className="container-fluid mt-5">
@@ -31,7 +31,7 @@ class Main extends Component {
               <h2 className="text-center pb-5">Submit Your Scripture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
-
+                
                 const title = this.scriptureTitle.value
                 console.log('helloooooo ', title)
                 const text = this.scriptureText.value
@@ -73,7 +73,7 @@ class Main extends Component {
                   </input>
                 </div>
 
-                <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
               <p>&nbsp;</p>
               {this.props.scriptures.map((image, key) => {
@@ -122,7 +122,7 @@ class Main extends Component {
                     </ul>
                   </div>
                 )
-              })} */}
+              })}
             </div>
           </main>
         </div>

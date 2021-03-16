@@ -44,13 +44,13 @@ class App extends Component {
     if (networkData) {
       const cryptoScripture = new web3.eth.Contract(CryptoScripture.abi, networkData.address)
 
-
+      console.log('sdjkfhdjskfhdshkj 0000-----', cryptoScripture)
       this.setState({ cryptoScripture })
       const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
       this.setState({ scriptureCount })
       // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
-        // 
+console.log('Im on the fcking look ', scriptureCount[i])
         const scripture = await cryptoScripture.methods.scriptures(i).call()
 
         this.setState({
@@ -82,12 +82,9 @@ class App extends Component {
     }
   }
 
-   refreshPage() {
-    window.location.reload(true);
-  }
-
   uploadScripture = payload => {
     console.log("Submitting file to ipfs...")
+    console.log('PAYLOAD----', payload);
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
@@ -97,11 +94,9 @@ class App extends Component {
       }
 
       this.setState({ loading: true })
-      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title,payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
-        this.setState({reload: true})
       })
-      
     })
   }
 
@@ -147,8 +142,7 @@ class App extends Component {
       cryptoScripture: null,
       images: [],
       users: [],
-      loading: true,
-      reload:false
+      loading: true
     }
 
 
@@ -158,6 +152,7 @@ class App extends Component {
     this.getUser = this.getUser.bind(this)
 
     this.state.testEngine.forEach(element => {
+
       this.getUser()
     });
 
@@ -165,9 +160,6 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.reload == true){
-      this.refreshPage();
-    }
     return (
       <div>
         <Navbar account={this.state.account} />

@@ -115,3 +115,4 @@ contract CryptoScripture {
         // emit ScriptureTipped(_id, hash, title, text, tipAmount, author);x
     }
 }
+
