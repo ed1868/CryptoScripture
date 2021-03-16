@@ -6,7 +6,8 @@ import addIcon from './assets/addTwo.png'
 class Main extends Component {
 
   render() {
-console.log("MAIN PROPS ", this.props.testEngine)
+
+    console.log('this is the api data', this.props)
 
     return (
       <div className="container-fluid mt-5">
@@ -17,7 +18,11 @@ console.log("MAIN PROPS ", this.props.testEngine)
             {this.props.scriptures.map((payload, key) => {
               console.log(`FIRST PAYLOAD : ${payload}`);
               return (
+<<<<<<< HEAD
                 <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]}/>
+=======
+                <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]} />
+>>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
               )
             })}
 
@@ -30,7 +35,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
               <h2 className="text-center pb-5">Submit Your Scripture</h2>
               <form onSubmit={(event) => {
                 event.preventDefault()
-                
+
                 const title = this.scriptureTitle.value
                 console.log('helloooooo ', title)
                 const text = this.scriptureText.value
@@ -72,10 +77,14 @@ console.log("MAIN PROPS ", this.props.testEngine)
                   </input>
                 </div>
 
-                <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
+                <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
               <p>&nbsp;</p>
+<<<<<<< HEAD
               {this.props.scriptures.map((image, key) => {
+=======
+              {/* {this.props.images.map((image, key) => {
+>>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
                 return (
 
                   <div className="card mb-4" key={key} >
@@ -121,7 +130,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
                     </ul>
                   </div>
                 )
-              })}
+              })} */}
             </div>
           </main>
         </div>

@@ -5704,12 +5704,21 @@
         }
       },
       "links": {},
+<<<<<<< HEAD
       "address": "0x50Ff4D130d7E0572D9dcA513C63F2D4983105C4C",
       "transactionHash": "0x90d597b6f0d5e59ce1a5119cb6c2c6ba54131713c98b7479bd3dd87432fcf252"
     }
   },
   "schemaVersion": "3.2.3",
   "updatedAt": "2021-03-16T18:23:29.695Z",
+=======
+      "address": "0xCC3eacB31E751b7eD17A71F9Af7255f93Bf05A44",
+      "transactionHash": "0x06694443defde97da9a22132c58e23935ccab70f919fd5c97b3c37ed69f48eed"
+    }
+  },
+  "schemaVersion": "3.2.3",
+  "updatedAt": "2021-03-15T21:34:18.857Z",
+>>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
   "networkType": "ethereum",
   "devdoc": {
     "methods": {}
