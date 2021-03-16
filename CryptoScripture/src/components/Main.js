@@ -18,11 +18,7 @@ class Main extends Component {
             {this.props.scriptures.map((payload, key) => {
               console.log(`FIRST PAYLOAD : ${payload}`);
               return (
-<<<<<<< HEAD
                 <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]}/>
-=======
-                <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]} />
->>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
               )
             })}
 
@@ -80,11 +76,7 @@ class Main extends Component {
                 <button type="submit" className="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
               <p>&nbsp;</p>
-<<<<<<< HEAD
               {this.props.scriptures.map((image, key) => {
-=======
-              {/* {this.props.images.map((image, key) => {
->>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
                 return (
 
                   <div className="card mb-4" key={key} >

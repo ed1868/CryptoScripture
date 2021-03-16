@@ -71,15 +71,7 @@ const Tip = (props) => {
 }
 
 const scriptureBody = (props) => {
-<<<<<<< HEAD
   console.log('THIS ARE THE FUCKING PROPS I GET IN THE INNER BODY', props.scriptures)
-=======
-  console.log('THIS ARE THE FUCKING PROPS I GET IN THE INNER BODY', props.apiUserData)
-  console.log("front end scriptures : ", props.scriptures);
-
-let image = "QmV24x3941pEBReX5sA53VmwRXAPJpKkPAh3Z8HN8FCk6G";
-
->>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
   
   
   // let image = props.apiUserData.image;
@@ -113,19 +105,10 @@ let image = "QmV24x3941pEBReX5sA53VmwRXAPJpKkPAh3Z8HN8FCk6G";
     <ScriptureBox>
       <div className="scriptOutline" key={props.scriptures.id}>
         <div className="inner-body">
-<<<<<<< HEAD
           <Image image={props.scriptures.hash} />
           <div className="body">
             <div className="inner-body">
                {/* <Name name={`${props.apiUserData.name.first} ${props.apiUserData.name.last}`} /> */}
-=======
-          <Image image={image} />
-          {/* <Image image={props.scriptures.image.hash} /> */}
-          <div className="body">
-            <div className="inner-body">
-               <Name name={`${props.apiUserData.name.first} ${props.apiUserData.name.last}`} />
-              {/* <Handle handle={ props.apiUserData.handle} />  */}
->>>>>>> e07b6e990afb84b8fb1f346f1a79cbed19087b48
               <Handle handle={ props.scriptures.author} /> 
             </div>
             <Tweet  tweet={props.scriptures.text} />
