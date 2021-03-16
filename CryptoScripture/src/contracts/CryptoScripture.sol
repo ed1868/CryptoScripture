@@ -7,34 +7,34 @@ contract CryptoScripture {
 
     // STORE SCRIPTURES
 
-    uint256 public scripturesCount = 0;
+      uint public scripturesCount = 0;
 
-    mapping(uint256 => Scripture) public scriptures;
+    mapping(uint => Scripture) public scriptures;
 
     struct Scripture {
-        uint256 id;
+        uint id;
         string hash;
         string title;
         string text;
-        uint256 tipAmount;
+        uint tipAmount;
         address payable author;
     }
 
     event ScriptureCreated(
-        uint256 id,
+        uint id,
         string hash,
         string title,
         string text,
-        uint256 tipAmount,
+        uint tipAmount,
         address payable author
     );
 
     event ScriptureTipped(
-        uint256 id,
+        uint id,
         string hash,
         string title,
         string text,
-        uint256 tipAmount,
+        uint tipAmount,
         address payable author
     );
 
@@ -57,7 +57,7 @@ contract CryptoScripture {
         // INCREMENT SCRIPTURE ID
         scripturesCount++;
         // ADD SCRIPTURE TO CONTRACT
-        scriptures[1] = Scripture(
+        scriptures[scripturesCount] = Scripture(
             scripturesCount,
             _scripHash,
             _title,

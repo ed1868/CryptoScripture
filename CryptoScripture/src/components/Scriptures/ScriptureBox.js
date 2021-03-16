@@ -14,7 +14,7 @@ const Image = (props) => {
   return (
     
     // src={props.image}
-    <img src={`https://ipfs.infura.io/ipfs/${props.image.hash}`} alt="Logo" className="picture">
+    <img src={`https://ipfs.infura.io/ipfs/${props.image}`} alt="Logo" className="picture">
     </img>
   )
 }
@@ -40,8 +40,8 @@ const Name = (props) => {
 const Tweet = (props) => {
   return (
     <div className="tweet">
-      {/* {props.tweet} */}
-      I'm just saying this is a test
+      {props.tweet}
+      {/* I'm just saying this is a test */}
     </div>
   )
 }
@@ -70,7 +70,7 @@ const Tip = (props) => {
 }
 
 const scriptureBody = (props) => {
-  console.log('THIS ARE THE FUCKING PROPS I GET IN THE INNER BODY', props.apiUserData)
+  console.log('THIS ARE THE FUCKING PROPS I GET IN THE INNER BODY', props.scriptures)
   
   
   // let image = props.apiUserData.image;
@@ -100,16 +100,17 @@ const scriptureBody = (props) => {
 
 
   return (
+    
     <ScriptureBox>
-      <div className="scriptOutline">
+      <div className="scriptOutline" key={props.scriptures.id}>
         <div className="inner-body">
-          <Image image={props.apiUserData.image} />
+          <Image image={props.scriptures.hash} />
           <div className="body">
             <div className="inner-body">
-               <Name name={`${props.apiUserData.name.first} ${props.apiUserData.name.last}`} />
-              <Handle handle={ props.apiUserData.handle} /> 
+               {/* <Name name={`${props.apiUserData.name.first} ${props.apiUserData.name.last}`} /> */}
+              <Handle handle={ props.scriptures.author} /> 
             </div>
-            <Tweet  tweet={props.tweet} />
+            <Tweet  tweet={props.scriptures.text} />
             <Tip />
           </div>
         </div>

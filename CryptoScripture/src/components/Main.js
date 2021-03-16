@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Identicon from 'identicon.js';
 import ScriptureBox from './Scriptures/ScriptureBox.js'
+import addIcon from './assets/addTwo.png'
 class Main extends Component {
 
   render() {
@@ -13,10 +14,10 @@ console.log("MAIN PROPS ", this.props.testEngine)
 
         <div className="row">
           <div className="col-md-6">
-            {this.props.testEngine.map((payload, key) => {
+            {this.props.scriptures.map((payload, key) => {
               console.log(`FIRST PAYLOAD : ${payload}`);
               return (
-                <ScriptureBox apiUserData={this.props.apiUserData[key]} />
+                <ScriptureBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]}/>
               )
             })}
 
@@ -42,7 +43,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
               }} >
 
                 {/* <div className="brand_name"> */}
-                <img className="brand_name mb-2" src={this.props.apiUserData[0].image} />
+                <img className="brand_name mb-2" src={addIcon} />
                 {/* </div> */}
                 <input type='file' id="file" accept=".jpg, .jpeg, .png, .bmp, .gif" onChange={this.props.captureFile} />
 
@@ -74,7 +75,7 @@ console.log("MAIN PROPS ", this.props.testEngine)
                 <button type="submit" class="btn btn-primary btn-block btn-lg">Upload!</button>
               </form>
               <p>&nbsp;</p>
-              {this.props.images.map((image, key) => {
+              {this.props.scriptures.map((image, key) => {
                 return (
 
                   <div className="card mb-4" key={key} >
@@ -90,8 +91,16 @@ console.log("MAIN PROPS ", this.props.testEngine)
                     </div>
                     <ul id="imageList" className="list-group list-group-flush">
                       <li className="list-group-item">
-                        <p className="text-center"><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px' }} /></p>
+                        <p className="text-center"><img src={`https://ipfs.infura.io/ipfs/${image.hash}`} style={{ maxWidth: '420px'}} /></p>
                         <p>{image.description}</p>
+                      </li>
+                      <li key={key} className="list-group-item py-2">
+                       {image.title}
+                       <br></br>
+                        <big className="float-left mt-1 text-muted">
+                      {image.text}
+                        </big>
+                     
                       </li>
                       <li key={key} className="list-group-item py-2">
                         <small className="float-left mt-1 text-muted">

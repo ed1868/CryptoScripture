@@ -63,6 +63,7 @@ console.log('Im on the fcking look ', scriptureCount[i])
         scriptures: this.state.scriptures.sort((a, b) => b.tipAmount - a.tipAmount)
       })
       this.setState({ loading: false })
+
     } else {
       window.alert('Decentragram contract not deployed to detected network.')
     }
@@ -166,7 +167,7 @@ console.log('Im on the fcking look ', scriptureCount[i])
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
             testEngine={this.state.testEngine}
-            images={this.state.scriptures}
+            scriptures={this.state.scriptures}
             captureFile={this.captureFile}
             uploadScripture={this.uploadScripture}
             tipImageOwner={this.tipImageOwuploadImagener}
