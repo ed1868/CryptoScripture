@@ -65,7 +65,7 @@ class App extends Component {
       this.setState({ loading: false })
 
     } else {
-      window.alert('Decentragram contract not deployed to detected network.')
+      window.alert('Crypture Scripture contract not deployed to detected network.')
     }
   }
 
@@ -99,15 +99,15 @@ class App extends Component {
       this.setState({ loading: true })
       this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
-        
-      })
-      .then( err => {
-        if(err){
-          console.log('THE ERROR IS : ', err);
-        }
 
-        window.location.reload(true);
       })
+        .then(err => {
+          if (err) {
+            console.log('THE ERROR IS : ', err);
+          }
+
+          window.location.reload(true);
+        })
 
 
     })
@@ -118,10 +118,21 @@ class App extends Component {
   }
 
   tipImageOwner(id, tipAmount) {
+
+    console.log(`USER ID : ${id}`);
+    console.log(`Tip amount : ${tipAmount}`);
     this.setState({ loading: true })
-    this.state.decentragram.methods.tipImageOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
-      this.setState({ loading: false })
+    this.state.cryptoScripture.methods.tipScriptureOwner(id).send({ from: this.state.account, value: tipAmount }).on('transactionHash', (hash) => {
+      this.setState({ loading: false });
     })
+      .then(err => {
+        if (err) {
+          console.log('THE ERROR IS : ', err);
+        }
+
+        window.location.reload(true);
+      })
+
   }
 
 
@@ -196,7 +207,7 @@ class App extends Component {
             scriptures={this.state.scriptures}
             captureFile={this.captureFile}
             uploadScripture={this.uploadScripture}
-            tipImageOwner={this.tipImageOwuploadImagener}
+            tipImageOwner={this.tipImageOwner}
             apiUserData={this.state.users}
 
           />

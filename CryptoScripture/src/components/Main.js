@@ -77,6 +77,8 @@ console.log("MAIN PROPS ", this.props.testEngine)
               </form>
               <p>&nbsp;</p>
               {this.props.scriptures.map((image, key) => {
+
+                console.log('IMAGE AUTHOR : ', image.author)
                 return (
 
                   <div className="card mb-4" key={key} id={key} >
@@ -111,7 +113,8 @@ console.log("MAIN PROPS ", this.props.testEngine)
                           className="btn btn-link btn-sm float-right pt-0"
                           name={image.id}
                           onClick={(event) => {
-                            let tipAmount = window.web3.utils.toWei('0.1', 'Ether')
+
+                            let tipAmount = window.web3.utils.toWei('1', 'Ether')
                             console.log(event.target.name, tipAmount)
                             this.props.tipImageOwner(event.target.name, tipAmount)
                           }}
