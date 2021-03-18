@@ -1,5 +1,8 @@
 pragma solidity ^0.5.0;
 
+//TODO ADD HASHTAGS (OPTIONAL)
+//TODO ADD DATE ADDED 
+
 contract CryptoScripture {
     // Code goes here...
 

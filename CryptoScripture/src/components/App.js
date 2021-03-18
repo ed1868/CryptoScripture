@@ -10,6 +10,13 @@ import './App.css';
 //Declare IPFS
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
+//TODO : ADD SORTS
+//TODO : ADD SLIDER
+//TODO : ADD HASHTAG 
+//TODO : ADD CHARACTER COUNT 
+//TODO : BETTER STYLING FOR SHOWCASING
+//TODO : BETTER NAV
+//TODO : FIGURE OUT TOKEN TRANSFERING
 
 class App extends Component {
 
@@ -43,16 +50,12 @@ class App extends Component {
     const networkData = CryptoScripture.networks[networkId]
     if (networkData) {
       const cryptoScripture = new web3.eth.Contract(CryptoScripture.abi, networkData.address)
-
-      console.log('sdjkfhdjskfhdshkj 0000-----', cryptoScripture)
       this.setState({ cryptoScripture })
       const scriptureCount = await cryptoScripture.methods.scripturesCount().call()
       this.setState({ scriptureCount })
       // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
-        console.log('Im on the fcking look ', scriptureCount[i])
         const scripture = await cryptoScripture.methods.scriptures(i).call()
-
         this.setState({
           scriptures: [...this.state.scriptures, scripture]
         })
@@ -203,6 +206,7 @@ class App extends Component {
         { this.state.loading
           ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
           : <Main
+            loggedInAccount = {this.state.account}
             testEngine={this.state.testEngine}
             scriptures={this.state.scriptures}
             captureFile={this.captureFile}
