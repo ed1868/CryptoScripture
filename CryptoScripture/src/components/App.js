@@ -1,6 +1,6 @@
 import Decentragram from '../abis/Decentragram.json'
 import CryptoScripture from '../abis/CryptoScripture.json'
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import Identicon from 'identicon.js';
 import Navbar from './Navbar'
 import Main from './Main'
@@ -50,7 +50,7 @@ class App extends Component {
       this.setState({ scriptureCount })
       // Load scriptures
       for (var i = 1; i <= scriptureCount; i++) {
-console.log('Im on the fcking look ', scriptureCount[i])
+        console.log('Im on the fcking look ', scriptureCount[i])
         const scripture = await cryptoScripture.methods.scriptures(i).call()
 
         this.setState({
@@ -82,6 +82,9 @@ console.log('Im on the fcking look ', scriptureCount[i])
     }
   }
 
+
+
+
   uploadScripture = payload => {
     console.log("Submitting file to ipfs...")
     console.log('PAYLOAD----', payload);
@@ -94,10 +97,24 @@ console.log('Im on the fcking look ', scriptureCount[i])
       }
 
       this.setState({ loading: true })
-      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title,payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
+        
       })
+      .then( err => {
+        if(err){
+          console.log('THE ERROR IS : ', err);
+        }
+
+        window.location.reload(true);
+      })
+
+
     })
+
+
+
+
   }
 
   tipImageOwner(id, tipAmount) {
@@ -106,6 +123,11 @@ console.log('Im on the fcking look ', scriptureCount[i])
       this.setState({ loading: false })
     })
   }
+
+
+
+
+
 
   getUser() {
     fetch('https://randomuser.me/api/')
@@ -144,6 +166,10 @@ console.log('Im on the fcking look ', scriptureCount[i])
       users: [],
       loading: true
     }
+
+
+
+
 
 
     this.uploadScripture = this.uploadScripture.bind(this)
