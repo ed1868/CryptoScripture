@@ -1,5 +1,11 @@
 /*  */
+#nomadNav{
+  background-color:rgba(0,0,0,0.4);
+}
 
+#account{
+  color:#000000;
+}
  .brand_name {
      text-align: center;
     border: 1px solid #1DA1F2;

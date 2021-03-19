@@ -49,6 +49,7 @@ contract CryptoScripture {
         string memory _title,
         string memory _text
     ) public {
+
         //ENSURE THAT SCRIPTURE HASH EXISTS
         require(bytes(_scripHash).length > 0);
         // ENSURE THAT SCRIPTURE DESCRIPTION EXISTS
