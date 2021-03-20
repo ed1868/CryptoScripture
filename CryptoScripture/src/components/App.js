@@ -10,13 +10,17 @@ import './App.css';
 //Declare IPFS
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
+//TODO : ADD PAGE WITH DESCRIPTION WHEN PEOPLE DONT HAVE ETHEREUM WALLETS LIKE METABASE
+//TODO : ADD FOOTER
 //TODO : ADD SORTS
-//TODO : ADD SLIDER
+//TODO : ADD SLIDER EXAMPLE
 //TODO : ADD HASHTAG 
 //TODO : ADD CHARACTER COUNT 
 //TODO : BETTER STYLING FOR SHOWCASING
 //TODO : BETTER NAV
 //TODO : FIGURE OUT TOKEN TRANSFERING
+//TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
+//TODO : FILTER FROM MOST RECENT POST OR MOST TIPPED POST
 
 class App extends Component {
 
