@@ -16,3 +16,50 @@
     background: transparent;
     color:black;
 }
+
+
+
+.info {
+    width: 35%;
+    float: left;
+    margin-top: 130px;
+}
+
+.info h1 {
+    /* font-size: 44px; */
+    margin: 0 0 20px;
+    line-height: 1.4;
+    /* color: #5d5d5d; */
+}
+
+.info p {
+    margin: 0;
+    line-height: 1.6;
+    font-size: 15px;
+    color: #5d5d5d;
+}
+
+ .info button {
+    border: 1;
+    border-radius: 20px;
+    padding: 12px 30px;
+    margin-top: 30px;
+    cursor: pointer;
+    
+    /* color: #FFF; */
+    /* background-color: #6c63ff; */
+}
+
+
+ .image {
+    width: 50%;
+    float: right;
+    margin-top: 35px;
+}
+ .image img {
+    max-width: 100%;
+}
+
+.clearfix {
+  clear: both;
+}
