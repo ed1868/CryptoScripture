@@ -1,40 +1,92 @@
 import React, { Component } from 'react';
 import Identicon from 'identicon.js';
 import photo from './assets/nomadblack.png'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav';
+import NavDropdown from 'react-bootstrap/NavDropdown';
+import Form from 'react-bootstrap/Form';
+import FormControl from 'react-bootstrap/FormControl'
+import Button from 'react-bootstrap/Button';
+import Image from 'react-bootstrap/Image';
 
-class Navbar extends Component {
+class Header extends Component {
 
   render() {
-    return (
-      <nav id="nomadNav" className="navbar navbar-dark fixed-top flex-md-nowrap pb-3 shadow pt-3">
-        <a
-          className="navbar-brand col-sm-3 col-md-2 mr-0"
-          href="https://www.ai-nomads.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <img src={photo} width="120" height="30" className="d-inline-block align-top mr-3" alt="" />
-          
-        </a>
-        <ul className="navbar-nav px-3">
-          <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
-            <small className="text-secondary">
-              <small id="account">{this.props.account}</small>
-            </small>
-            { this.props.account
-              ? <img
-                className='ml-2'
-                width='30'
-                height='30'
-                src={`data:image/png;base64,${new Identicon(this.props.account, 30).toString()}`}
-              />
-              : <span></span>
-            }
-          </li>
-        </ul>
-      </nav>
-    );
+    if(this.props.account){
+      return (
+
+
+
+        <Navbar id="nomadNav" expand="lg" fixed="top">
+          <Navbar.Brand href="#home">
+            <Image width="120" height="30" src={photo} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Nav.Link href="#home">About</Nav.Link>
+              <Nav.Link href="#link">Market</Nav.Link>
+              
+  
+            <Nav.Link href="#link" inline>
+  
+  
+              <small className="text-secondary pr-2">
+                <small id="account">{this.props.account}</small>
+  
+                
+              </small>
+  
+                  { this.props.account
+             ? 
+             
+             <Image   src={`data:image/png;base64,${new Identicon(this.props.account, 30).toString()}`}   width="30" height="30" />
+      
+                : <span>Please connect your wallet</span>
+              }
+              
+            </Nav.Link>
+        
+            </Nav>
+  
+  
+          </Navbar.Collapse>
+        </Navbar>
+  
+  
+  
+      );
+    }else{
+      return (
+
+
+
+        <Navbar id="nomadNav" expand="lg" fixed="top">
+          <Navbar.Brand href="#home">
+            <Image width="120" height="30" src={photo} />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ml-auto">
+              <Nav.Link href="#home">About</Nav.Link>
+              <Nav.Link href="#link">Market</Nav.Link>
+              <Nav.Link href="#link">Connect</Nav.Link>
+              
+  
+   
+        
+            </Nav>
+  
+  
+          </Navbar.Collapse>
+        </Navbar>
+  
+  
+  
+      );
+    }
+
   }
 }
 
-export default Navbar;
+export default Header;

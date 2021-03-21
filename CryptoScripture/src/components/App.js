@@ -2,14 +2,17 @@ import Decentragram from '../abis/Decentragram.json'
 import CryptoScripture from '../abis/CryptoScripture.json'
 import React, { Component, useState } from 'react';
 import Identicon from 'identicon.js';
-import Navbar from './Navbar'
+import Header from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
 
+import Preview from './Preview/Preview';
 //Declare IPFS
 const ipfsClient = require('ipfs-http-client')
 const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' }) // leaving out the arguments will default to these values
+
+
 //TODO : ADD PAGE WITH DESCRIPTION WHEN PEOPLE DONT HAVE ETHEREUM WALLETS LIKE METABASE
 //TODO : ADD FOOTER
 //TODO : ADD SORTS
@@ -38,12 +41,19 @@ class App extends Component {
       window.web3 = new Web3(window.web3.currentProvider)
     }
     else {
-      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
+      window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+      this.setState({ preview: true });
+      this.setState({loading:false});
     }
   }
 
   async loadBlockchainData() {
     const web3 = window.web3
+    if(web3 == undefined){
+      this.setState({ preview: true });
+      this.setState({loading:false});
+      return;
+    }
     // Load account
     const accounts = await web3.eth.getAccounts()
 
@@ -72,7 +82,9 @@ class App extends Component {
       this.setState({ loading: false })
 
     } else {
-      window.alert('Crypture Scripture contract not deployed to detected network.')
+      window.alert('Crypture Scripture contract not deployed to detected network.');
+
+      
     }
   }
 
@@ -182,7 +194,8 @@ class App extends Component {
       cryptoScripture: null,
       images: [],
       users: [],
-      loading: true
+      loading: true,
+      preview: false
     }
 
 
@@ -204,24 +217,42 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div>
-        <Navbar account={this.state.account} />
-        { this.state.loading
-          ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
-          : <Main
-            loggedInAccount = {this.state.account}
-            testEngine={this.state.testEngine}
-            scriptures={this.state.scriptures}
-            captureFile={this.captureFile}
-            uploadScripture={this.uploadScripture}
-            tipImageOwner={this.tipImageOwner}
-            apiUserData={this.state.users}
+    if(this.state.preview){
+return(
+  <div>
+  <Header account={this.state.account} />
+  { this.state.loading
+    ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+    :
+    <Preview account={this.state.account} />
+  }
+</div>
+)
+    } else{
+      return (
+        <div>
+          <Header account={this.state.account} />
+          { this.state.loading
+            ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+            :
+        
+  
+  
+            <Main
+              loggedInAccount={this.state.account}
+              testEngine={this.state.testEngine}
+              scriptures={this.state.scriptures}
+              captureFile={this.captureFile}
+              uploadScripture={this.uploadScripture}
+              tipImageOwner={this.tipImageOwner}
+              apiUserData={this.state.users}
+  
+            />
+          }
+        </div>
+      );
+    }
 
-          />
-        }
-      </div>
-    );
   }
 }
 
