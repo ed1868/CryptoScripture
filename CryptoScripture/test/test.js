@@ -30,24 +30,42 @@ contract('CryptoScripture', ([deployer, author, tipper]) => {
       const hash = "hashValue";
 
       before(async () => {
-        result = await cryptoScripture.uploadScripture(hash, 'If', 'If all I wanted to do is sit and talk to you. Would you listen?', { from: author })
+
+
+
+
+        let newDate = new Date().toString();
+        console.log(newDate);
+
+        result = await cryptoScripture.uploadScripture(hash, 'If', 'If all I wanted to do is sit and talk to you. Would you listen?', newDate, { from: author })
         scriptureCount = await cryptoScripture.scripturesCount()
       })
 
       //three
 
       it('create scriptures', async () => {
-        // SUCCESS
 
+
+
+        let newDate = new Date().toString();
+        // SUCCESS
         assert.equal(scriptureCount, 1)
         const event = result.logs[0].args;
+
+        console.log('THIS IS THE EVENT : ', event);
         assert.equal(event.id.toNumber(), scriptureCount.toNumber(), 'id is correct')
         assert.equal(event.hash, hash, 'Hash is correct')
         assert.equal(event.text, 'If all I wanted to do is sit and talk to you. Would you listen?', 'Text is correct')
-        assert.equal(event.title, 'If', 'Title is correct')
+        assert.equal(event.title, 'If', 'Title is correct');
+        assert.equal(event.date,newDate , 'should be a date');
         assert.equal(event.tipAmount, '0', 'tip amount is correct')
         assert.equal(event.author, author, 'author is correct')
+        assert.equal(event.timestamp, event.timestamp, 'It should not be empty')
         console.log(result.logs[0].args)
+
+        // FAILURE TEST : SCRIPTURE MUST HAVE A TIMESTAMP
+
+        await cryptoScripture.uploadScripture(event.hash, 'Tony Stark Ironman Suite V4', { from: author }).should.be.rejected;
 
         // FAILURE TEST : IMAGE MUST HAVE HASH
         await cryptoScripture.uploadScripture('', 'Tony Stark Ironman Suite V4', { from: author }).should.be.rejected;
@@ -116,8 +134,21 @@ contract('CryptoScripture', ([deployer, author, tipper]) => {
   it('has a name', async () => {
     const name = await cryptoScripture.name()
     assert.equal(name, 'Nomads Scriptures')
-  })
-})
+  });
+
+
+  it('has a timestamp', async () => {
+    const timestamp = await cryptoScripture.timestamp()
+    console.log('THE TIME STAMP IS : ', timestamp)
+    assert.equal(timestamp, timestamp)
+  });
+
+});
+
+
+
+
+
 
   // describe('images', async () => {
   //   let result, imageCount

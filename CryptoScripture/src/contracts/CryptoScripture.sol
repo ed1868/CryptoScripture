@@ -1,12 +1,13 @@
 pragma solidity ^0.5.0;
 
 //TODO ADD HASHTAGS (OPTIONAL)
-//TODO ADD DATE ADDED 
+
 
 contract CryptoScripture {
     // Code goes here...
 
     string public name = "Nomads Scriptures";
+    uint256 public timestamp = block.timestamp;
 
     // STORE SCRIPTURES
 
@@ -19,8 +20,10 @@ contract CryptoScripture {
         string hash;
         string title;
         string text;
+        string date;
         uint tipAmount;
         address payable author;
+        uint timestamp;
     }
 
     event ScriptureCreated(
@@ -28,8 +31,10 @@ contract CryptoScripture {
         string hash,
         string title,
         string text,
+        string date,
         uint tipAmount,
-        address payable author
+        address payable author,
+        uint timestamp
     );
 
     event ScriptureTipped(
@@ -37,8 +42,10 @@ contract CryptoScripture {
         string hash,
         string title,
         string text,
+        string date,
         uint tipAmount,
-        address payable author
+        address payable author,
+        uint timestamp
     );
 
 
@@ -47,8 +54,10 @@ contract CryptoScripture {
     function uploadScripture(
         string memory _scripHash,
         string memory _title,
-        string memory _text
+        string memory _text,
+        string memory _date
     ) public {
+
 
         //ENSURE THAT SCRIPTURE HASH EXISTS
         require(bytes(_scripHash).length > 0);
@@ -66,8 +75,10 @@ contract CryptoScripture {
             _scripHash,
             _title,
             _text,
+            _date,
             0,
-            msg.sender
+            msg.sender,
+            block.timestamp
         );
 
         // TRIGGER ON EVENT
@@ -76,8 +87,10 @@ contract CryptoScripture {
             _scripHash,
             _title,
             _text,
+            _date,
             0,
-            msg.sender
+            msg.sender,
+            block.timestamp
         );
     }
 
@@ -112,8 +125,10 @@ contract CryptoScripture {
             _scripture.hash,
             _scripture.title,
             _scripture.text,
+            _scripture.date,
             _scripture.tipAmount,
-            _author
+            _author,
+            block.timestamp
         );
 
         // emit ScriptureTipped(_id, hash, title, text, tipAmount, author);x
