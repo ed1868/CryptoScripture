@@ -34,3 +34,11 @@ margin-left: 33%;
     /* position: absolute; */
   }
 
+.sortBadge{
+  color: blue;
+  padding-left:10px;
+}
+
+.sortBadge:hover{
+  cursor: pointer;
+}

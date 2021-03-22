@@ -20,7 +20,6 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 //TODO : ADD HASHTAG 
 //TODO : ADD CHARACTER COUNT 
 //TODO : BETTER STYLING FOR SHOWCASING
-//TODO : BETTER NAV
 //TODO : FIGURE OUT TOKEN TRANSFERING
 //TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
 //TODO : FILTER FROM MOST RECENT POST OR MOST TIPPED POST
@@ -195,7 +194,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: true
+      preview: false
     }
 
 
