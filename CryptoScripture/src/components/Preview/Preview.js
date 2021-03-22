@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import Jumbotron from 'react-bootstrap/Jumbotron';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+
 
 import './preview.css'
 
@@ -28,42 +32,32 @@ class Preview extends Component {
                 </Jumbotron>
 
                 <Container>
+                    <Row>
+                        <Col sm={6} md={6}>
 
-                    {/* <Container>
-  <Row>
-    <Col sm={8}>sm=8</Col>
-    <Col sm={4}>sm=4</Col>
-  </Row>
-  <Row>
-    <Col sm>sm=true</Col>
-    <Col sm>sm=true</Col>
-    <Col sm>sm=true</Col>
-  </Row>
-</Container> */}
-                    <div className="info">
-                        <h1 className="text-black headerOne">Explore Art</h1>
-                        <p>An online community of makers, developers, and traders is pushing the art world into new territory.<br></br>
+                            <h1 className="text-black headerOne">Explore Art</h1>
+                            <p>An online community of makers, developers, and traders is pushing the art world into new territory.<br></br>
 
-                            <br></br>
+                                <br></br>
       As the underlying technology develops, a growing pool of artists are selling verified, immutable works to art, book, lovers and speculators, and the space as a whole is waking up to the power and potential of decentralized networks and currencies.
 
 </p>
 
-                        <Button variant="outline-dark">Sell Now!</Button>
-                    </div>
-                    <div className="image">
-                        <img src="https://i.postimg.cc/65QxYYzh/001234.png" />
-                    </div>
-                    <div className="clearfix pb-5"></div>
+                            <Button variant="outline-dark">Sell Now!</Button>
+
+
+
+                        </Col>
+                        <Col sm={6}>
+
+                            <Image src="https://i.postimg.cc/65QxYYzh/001234.png" height="100%" width="100%" />
+
+                        </Col>
+                    </Row>
                 </Container>
 
             </div>
 
-            //         <div id="main" className="is-loading">
-            //             <h1>
-            //                 新大久保へようこそ
-            // </h1>
-            //         </div>
         );
     }
 }

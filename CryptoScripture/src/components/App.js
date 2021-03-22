@@ -194,7 +194,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: false
+      preview: true
     }
 
 
