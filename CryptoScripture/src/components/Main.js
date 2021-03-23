@@ -7,14 +7,14 @@ import addIcon from './assets/addTwo.png'
 
 import Switch from "react-switch";
 
-// import { WithContext as ReactTags } from 'react-tag-input';
+import { WithContext as ReactTags } from 'react-tag-input';
 
-// const KeyCodes = {
-//   comma: 188,
-//   enter: 13,
-// };
+const KeyCodes = {
+  comma: 188,
+  enter: 13,
+};
 
-// const delimiters = [KeyCodes.comma, KeyCodes.enter];
+const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 class Main extends Component {
   // constructor(props) {
@@ -66,13 +66,55 @@ class Main extends Component {
     super(props);
     this.state = {
       checked: false,
-      scriptures: this.props.scriptures
-
+      scriptures: this.props.scriptures,
+      tags: [
+        { id: "Thailand", text: "Thailand" },
+        { id: "India", text: "India" }
+      ],
+            suggestions: [
+        { id: 'USA', text: 'USA' },
+        { id: 'Germany', text: 'Germany' },
+        { id: 'Austria', text: 'Austria' },
+        { id: 'Costa Rica', text: 'Costa Rica' },
+        { id: 'Sri Lanka', text: 'Sri Lanka' },
+        { id: 'Thailand', text: 'Thailand' }
+      ]
     };
+
+    this.handleDelete = this.handleDelete.bind(this);
+    this.handleAddition = this.handleAddition.bind(this);
+    this.handleDrag = this.handleDrag.bind(this);
+
     this.handleChange = this.handleChange.bind(this);
     this.sortByPopularity = this.sortByPopularity.bind(this);
     this.sortByMostRecent = this.sortByMostRecent.bind(this);
   }
+
+
+
+
+  handleDelete(i) {
+    const { tags } = this.state;
+    this.setState({
+      tags: tags.filter((tag, index) => index !== i),
+    });
+  }
+
+  handleAddition(tag) {
+    this.setState(state => ({ tags: [...state.tags, tag] }));
+  }
+
+  handleDrag(tag, currPos, newPos) {
+    const tags = [...this.state.tags];
+    const newTags = tags.slice();
+
+    newTags.splice(currPos, 1);
+    newTags.splice(newPos, 0, tag);
+
+    // re-render
+    this.setState({ tags: newTags });
+  }
+
 
   handleChange(checked) {
     this.setState({ checked });
@@ -189,15 +231,15 @@ class Main extends Component {
                       required>
                     </input>
 
-                    {/* <ReactTags tags={tags}
-                    suggestions={suggestions}
-                    handleDelete={this.handleDelete}
-                    handleAddition={this.handleAddition}
-                    handleDrag={this.handleDrag}
-                    delimiters={delimiters} 
-                    
+                    <ReactTags tags={this.state.tags}
+                      suggestions={this.state.suggestions}
+                      handleDelete={this.handleDelete}
+                      handleAddition={this.handleAddition}
+                      handleDrag={this.handleDrag}
+                      delimiters={delimiters}
 
-                    /> */}
+
+                    />
 
                   </div>
 
