@@ -108,7 +108,12 @@ class App extends Component {
     console.log('PAYLOAD----', payload);
 
 
-    payload.date = new Date().toString();
+    let date = new Date();
+
+    let format = `${date.getFullYear()}/${date.getMonth()}/${date.getDay()}`
+
+    payload.date = format;
+    
     console.log('PAYLOAD NOW-----', payload)
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {

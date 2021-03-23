@@ -94,6 +94,16 @@ class Main extends Component {
 
   sortByMostRecent() {
     console.log('ENTRO EN MOST RECENT');
+
+    console.log(this.props.scriptures);
+
+
+    this.setState({
+      scriptures: this.props.scriptures.sort((a, b) => {
+        return b.timestamp - a.timestamp
+      })
+    });
+
   }
   render() {
     console.log("MAIN PROPS ", this.props.testEngine)
@@ -233,7 +243,7 @@ class Main extends Component {
 
 
 
-                  <div className="card mb-4"  key={key}>
+                  <div className="card mb-4" key={key}>
 
                     <div className="card-header">
                       <img
