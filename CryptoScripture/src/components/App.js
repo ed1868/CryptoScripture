@@ -42,15 +42,15 @@ class App extends Component {
     else {
       window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
       this.setState({ preview: true });
-      this.setState({loading:false});
+      this.setState({ loading: false });
     }
   }
 
   async loadBlockchainData() {
     const web3 = window.web3
-    if(web3 == undefined){
+    if (web3 == undefined) {
       this.setState({ preview: true });
-      this.setState({loading:false});
+      this.setState({ loading: false });
       return;
     }
     // Load account
@@ -83,7 +83,7 @@ class App extends Component {
     } else {
       window.alert('Crypture Scripture contract not deployed to detected network.');
 
-      
+
     }
   }
 
@@ -106,6 +106,10 @@ class App extends Component {
   uploadScripture = payload => {
     console.log("Submitting file to ipfs...")
     console.log('PAYLOAD----', payload);
+
+
+    payload.date = new Date().toString();
+    console.log('PAYLOAD NOW-----', payload)
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
@@ -115,7 +119,7 @@ class App extends Component {
       }
 
       this.setState({ loading: true })
-      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text,payload.date).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
 
       })
@@ -216,27 +220,27 @@ class App extends Component {
   }
 
   render() {
-    if(this.state.preview){
-return(
-  <div>
-  <Header account={this.state.account} />
-  { this.state.loading
-    ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
-    :
-    <Preview account={this.state.account} />
-  }
-</div>
-)
-    } else{
+    if (this.state.preview) {
       return (
         <div>
           <Header account={this.state.account} />
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
-        
-  
-  
+            <Preview account={this.state.account} />
+          }
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <Header account={this.state.account} />
+          { this.state.loading
+            ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
+            :
+
+
+
             <Main
               loggedInAccount={this.state.account}
               testEngine={this.state.testEngine}
@@ -245,7 +249,7 @@ return(
               uploadScripture={this.uploadScripture}
               tipImageOwner={this.tipImageOwner}
               apiUserData={this.state.users}
-  
+
             />
           }
         </div>
