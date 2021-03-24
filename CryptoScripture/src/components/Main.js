@@ -7,6 +7,10 @@ import addIcon from './assets/addTwo.png'
 
 import Switch from "react-switch";
 
+
+import TagsInput from 'react-tagsinput'
+
+
 import { WithContext as ReactTags } from 'react-tag-input';
 
 const KeyCodes = {
@@ -78,7 +82,8 @@ class Main extends Component {
         { id: 'Costa Rica', text: 'Costa Rica' },
         { id: 'Sri Lanka', text: 'Sri Lanka' },
         { id: 'Thailand', text: 'Thailand' }
-      ]
+      ],
+      frags:[]
     };
 
     this.handleDelete = this.handleDelete.bind(this);
@@ -88,6 +93,8 @@ class Main extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.sortByPopularity = this.sortByPopularity.bind(this);
     this.sortByMostRecent = this.sortByMostRecent.bind(this);
+
+    this.handleChangeTwo = this.handleChangeTwo.bind(this);
   }
 
 
@@ -119,6 +126,12 @@ class Main extends Component {
   handleChange(checked) {
     this.setState({ checked });
   }
+  
+  handleChangeTwo(frags) {
+    this.setState({frags})
+  }
+
+
 
   sortByPopularity() {
     console.log('ENTRO EN POPULARITY VOTE');
@@ -160,6 +173,9 @@ class Main extends Component {
               </label>
               <br></br>
               <Switch onChange={this.handleChange} checked={this.state.checked} />
+              <br></br>
+              <br></br>
+              <TagsInput value={this.state.frags} onChange={this.handleChangeTwo} />
             </div>
 
             <div className="col-md-12">
@@ -263,6 +279,9 @@ class Main extends Component {
               </label>
               <br></br>
               <Switch onChange={this.handleChange} checked={this.state.checked} />
+              <br></br>
+              <br></br>
+              <TagsInput value={this.state.frags} onChange={this.handleChangeTwo} />
             </div>
 
             <div className="col-md-12">
