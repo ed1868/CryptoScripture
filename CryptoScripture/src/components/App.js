@@ -15,14 +15,13 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 
 //TODO : ADD PAGE WITH DESCRIPTION WHEN PEOPLE DONT HAVE ETHEREUM WALLETS LIKE METABASE
 //TODO : ADD FOOTER
-//TODO : ADD SORTS
 //TODO : ADD SLIDER EXAMPLE
 //TODO : ADD HASHTAG 
 //TODO : ADD CHARACTER COUNT 
 //TODO : BETTER STYLING FOR SHOWCASING
 //TODO : FIGURE OUT TOKEN TRANSFERING
 //TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
-//TODO : FILTER FROM MOST RECENT POST OR MOST TIPPED POST
+
 
 class App extends Component {
 
@@ -82,8 +81,6 @@ class App extends Component {
 
     } else {
       window.alert('Crypture Scripture contract not deployed to detected network.');
-
-
     }
   }
 
@@ -114,7 +111,6 @@ class App extends Component {
 
     payload.date = format;
 
-    console.log('PAYLOAD NOW-----', payload)
     //adding file to the IPFS
     ipfs.add(this.state.buffer, (error, result) => {
       console.log('Ipfs result', result)
@@ -124,7 +120,7 @@ class App extends Component {
       }
 
       this.setState({ loading: true })
-      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text,payload.date).send({ from: this.state.account }).on('transactionHash', (hash) => {
+      this.state.cryptoScripture.methods.uploadScripture(result[0].hash, payload.title, payload.text, payload.date).send({ from: this.state.account }).on('transactionHash', (hash) => {
         this.setState({ loading: false })
 
       })
@@ -132,16 +128,9 @@ class App extends Component {
           if (err) {
             console.log('THE ERROR IS : ', err);
           }
-
           window.location.reload(true);
         })
-
-
     })
-
-
-
-
   }
 
   tipImageOwner(id, tipAmount) {
@@ -161,11 +150,6 @@ class App extends Component {
       })
 
   }
-
-
-
-
-
 
   getUser() {
     fetch('https://randomuser.me/api/')
@@ -207,10 +191,6 @@ class App extends Component {
     }
 
 
-
-
-
-
     this.uploadScripture = this.uploadScripture.bind(this)
     this.tipImageOwner = this.tipImageOwner.bind(this)
     this.captureFile = this.captureFile.bind(this)
@@ -219,9 +199,7 @@ class App extends Component {
     this.state.testEngine.forEach(element => {
 
       this.getUser()
-    });
-
-
+    }); x
   }
 
   render() {
@@ -243,9 +221,6 @@ class App extends Component {
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
-
-
-
             <Main
               loggedInAccount={this.state.account}
               testEngine={this.state.testEngine}
