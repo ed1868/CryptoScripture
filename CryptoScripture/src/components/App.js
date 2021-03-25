@@ -199,7 +199,7 @@ class App extends Component {
     this.state.testEngine.forEach(element => {
 
       this.getUser()
-    }); x
+    }); 
   }
 
   render() {
