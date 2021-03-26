@@ -170,7 +170,6 @@ class Main extends Component {
         <div className="container-fluid mt-5">
           <div className="row pt-5">
             <div className="col-md-12">
-              <h1 className="foo">foofoo foo</h1>
               <label>
                 <span className="pr-4">Switch between instagram or twitter feed</span>
 
