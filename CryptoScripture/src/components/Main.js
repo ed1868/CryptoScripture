@@ -299,7 +299,7 @@ class Main extends Component {
             </div>
 
 
-            
+
 
 
             {this.props.scriptures.map((payload, key) => {
@@ -311,7 +311,7 @@ class Main extends Component {
 
 
 
-    
+
 
             <main role="main" className="col-lg-6 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
               <div className="content mr-auto ml-auto">
