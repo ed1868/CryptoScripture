@@ -7,6 +7,9 @@ import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
 
+
+
+
 import Preview from './Preview/Preview';
 //Declare IPFS
 const ipfsClient = require('ipfs-http-client')
