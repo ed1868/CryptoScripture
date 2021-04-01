@@ -9,7 +9,13 @@ import './App.css';
 
 import Work from './work';
 
-
+import './assets/css/style.css';
+import './assets/css/animate.min.css';
+// import './assets/css/font-awesome.min.css';
+// import './assets/css/owl.carousel.min.css';
+import './assets/css/rtl.css';
+// import './assets/css/owl.theme.default.min.css';
+import './assets/css/swiper.min.css';
 
 
 import Preview from './Preview/Preview';
@@ -27,7 +33,6 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 //TODO : FIGURE OUT TOKEN TRANSFERING
 //TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
 //TODO : MAKE THE WORK SECTION AND REACT COMPONENTS WORK (SWITCH TO REACT-BOOTSTRAP)
-//TODO : FIX TIPS
 //TODO : CHANGE HEADER PICTURE
 
 
@@ -195,7 +200,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: false
+      preview: true
     }
 
 
