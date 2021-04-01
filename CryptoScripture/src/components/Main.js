@@ -6,6 +6,8 @@ import ScriptureBox from './Scriptures/ScriptureBox.js'
 import addIcon from './assets/addTwo.png'
 import ScriptureFeedBox from './Scriptures/ScriptureFeed.js';
 import Image from 'react-bootstrap/Image';
+import Work from './work';
+
 
 import Switch from "react-switch";
 import { Style } from "react-style-tag";
@@ -164,7 +166,10 @@ class Main extends Component {
 
   }
   render() {
-    console.log("MAIN PROPS ", this.props.testEngine)
+    console.log("MAIN PROPS ", this.props)
+
+
+
     if (this.state.checked) {
       return (
         <div className="container-fluid mt-5">
@@ -320,7 +325,7 @@ class Main extends Component {
 
             {this.props.scriptures.map((payload, key) => {
               return (
-                <ScriptureFeedBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]} />
+                <ScriptureFeedBox apiUserData={this.props.apiUserData[key]} scriptures={this.props.scriptures[key]} tipImageOwner={this.props.tipImageOwner} />
               )
 
             })}
@@ -328,6 +333,7 @@ class Main extends Component {
 
 
 
+            {/* <Work/> */}
 
             <main role="main" className="col-lg-6 ml-auto mr-auto" style={{ maxWidth: '500px' }}>
               <div className="content mr-auto ml-auto">

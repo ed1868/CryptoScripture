@@ -7,6 +7,8 @@ import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
 
+import Work from './work';
+
 
 
 
@@ -24,6 +26,9 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 //TODO : BETTER STYLING FOR SHOWCASING
 //TODO : FIGURE OUT TOKEN TRANSFERING
 //TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
+//TODO : MAKE THE WORK SECTION AND REACT COMPONENTS WORK (SWITCH TO REACT-BOOTSTRAP)
+//TODO : FIX TIPS
+//TODO : CHANGE HEADER PICTURE
 
 
 class App extends Component {
@@ -224,6 +229,7 @@ class App extends Component {
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
+            
             <Main
               loggedInAccount={this.state.account}
               testEngine={this.state.testEngine}
@@ -234,6 +240,7 @@ class App extends Component {
               apiUserData={this.state.users}
 
             />
+            
           }
         </div>
       );
