@@ -6,7 +6,7 @@ import ScriptureBox from './Scriptures/ScriptureBox.js'
 import addIcon from './assets/addTwo.png'
 import ScriptureFeedBox from './Scriptures/ScriptureFeed.js';
 import Image from 'react-bootstrap/Image';
-import Work from './work';
+
 
 
 import Switch from "react-switch";

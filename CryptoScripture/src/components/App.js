@@ -7,7 +7,7 @@ import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
 
-import Work from './work';
+
 
 import './assets/css/style.css';
 import './assets/css/animate.min.css';

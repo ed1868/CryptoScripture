@@ -7,7 +7,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
-import Work from '../work';
+
 import whiteLine from '../assets/images/title-line.png';
 import cryptoOne from '../assets/images/icon/1.png'
 import cryptoTwo from '../assets/images/icon/2.png'
