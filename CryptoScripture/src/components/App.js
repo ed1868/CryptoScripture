@@ -200,7 +200,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: true
+      preview: false
     }
 
 
@@ -212,10 +212,11 @@ class App extends Component {
     this.state.testEngine.forEach(element => {
 
       this.getUser()
-    }); 
+    });
   }
 
   render() {
+
     if (this.state.preview) {
       return (
         <div>
@@ -234,7 +235,7 @@ class App extends Component {
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
-            
+
             <Main
               loggedInAccount={this.state.account}
               testEngine={this.state.testEngine}
@@ -245,7 +246,7 @@ class App extends Component {
               apiUserData={this.state.users}
 
             />
-            
+
           }
         </div>
       );

@@ -12,6 +12,11 @@ import whiteLine from '../assets/images/title-line.png';
 import cryptoOne from '../assets/images/icon/1.png'
 import cryptoTwo from '../assets/images/icon/2.png'
 import cryptoThree from '../assets/images/icon/3.png'
+// import OwlCarousel from 'react-owl-carousel';
+
+// import TopScriptures from './topScriptures.js';
+// 
+
 
 import './preview.css'
 
@@ -35,7 +40,7 @@ class Preview extends Component {
                     </div>
                 </Jumbotron>
                 {/* START OF WORK SECTION */}
-
+                {/* <TopScriptures /> */}
                 <section className="work" id="work">
 
                     <Container>
@@ -120,6 +125,7 @@ class Preview extends Component {
                         </Col>
                     </Row>
                 </Container>
+
 
             </div>
 
