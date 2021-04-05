@@ -28,12 +28,12 @@ class Preview extends Component {
             <div>
                 <Jumbotron id="jumbo" >
                     <div id="jumboInfo" className="mt-4 pt-5" >
-                        <h1 className="text-center text-black mt-5 pt-5 headerOne" >Crypto Scriptures</h1>
-                        <h5 className="text-center text-black mt-5">
+                        <h1 className="text-center sectionTitle mt-5 pt-5 headerOne" >Crypto Scriptures</h1>
+                        <h5 className="text-center text-white mt-5">
                             Buy, sell, and discover rare digital items from authors all over the world.
                     </h5>
                         <h5 className="text-center mt-5" >
-                            <Button id="jumboButton" variant="dark">Explore</Button>
+                        <div className="price-plan-btn">Explore Now</div>
                         </h5>
 
                     </div>

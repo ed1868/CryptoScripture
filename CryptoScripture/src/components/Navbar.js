@@ -24,11 +24,11 @@ class Header extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ml-auto">
-              <Nav.Link href="#home">About</Nav.Link>
-              <Nav.Link href="#link">Market</Nav.Link>
+              <Nav.Link className="text-black mt-1" href="#home">About</Nav.Link>
+              <Nav.Link className="text-black mt-1" href="#link">Market</Nav.Link>
               
   
-            <Nav.Link href="#link" inline>
+            <Nav.Link className="text-black" href="#link" inline>
   
   
               <small className="text-secondary pr-2">
