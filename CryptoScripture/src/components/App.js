@@ -12,9 +12,9 @@ import './App.css';
 import './assets/css/style.css';
 import './assets/css/animate.min.css';
 // import './assets/css/font-awesome.min.css';
-// import './assets/css/owl.carousel.min.css';
+import './assets/css/owl.carousel.min.css';
 import './assets/css/rtl.css';
-// import './assets/css/owl.theme.default.min.css';
+import './assets/css/owl.theme.default.min.css';
 import './assets/css/swiper.min.css';
 
 
@@ -85,8 +85,9 @@ class App extends Component {
           scriptures: [...this.state.scriptures, scripture]
         })
       }
-      // Sort scriptures. Show highest tipped scriptures first
 
+
+      // Sort scriptures. Show highest tipped scriptures first
       this.setState({
         scriptures: this.state.scriptures.sort((a, b) => b.tipAmount - a.tipAmount)
       })
@@ -95,7 +96,18 @@ class App extends Component {
     } else {
       window.alert('Crypture Scripture contract not deployed to detected network.');
     }
+
+
+    // SET Top 5 SCRIPTURES
+
+    this.setState({
+      top5scriptures: this.state.scriptures.slice(0, 5)
+    });
+
   }
+
+
+
 
   captureFile = event => {
 
@@ -194,13 +206,14 @@ class App extends Component {
     this.state = {
       account: '',
       scriptures: [],
+      top5scriptures: [],
       testEngine: ["one", "two", "three"],
       decentragram: null,
       cryptoScripture: null,
       images: [],
       users: [],
       loading: true,
-      preview: false
+      preview: true
     }
 
 
@@ -224,7 +237,7 @@ class App extends Component {
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
-            <Preview account={this.state.account} />
+            <Preview account={this.state.account} top5scriptures={this.state.top5scriptures} />
           }
         </div>
       )

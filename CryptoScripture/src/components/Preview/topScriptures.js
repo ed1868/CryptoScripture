@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react';
 import OwlCarousel from 'react-owl-carousel';
 
 
-class Price extends React.Component {
+class TopScriptures extends Component {
   render() {
     // OwlCarousel Option for Prices
     const options = {
@@ -100,4 +100,4 @@ class Price extends React.Component {
 }
 
 
-export default Price;
+export default TopScriptures;

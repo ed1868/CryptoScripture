@@ -14,7 +14,7 @@ import cryptoTwo from '../assets/images/icon/2.png'
 import cryptoThree from '../assets/images/icon/3.png'
 // import OwlCarousel from 'react-owl-carousel';
 
-// import TopScriptures from './topScriptures.js';
+import TopScriptures from './topScriptures.js';
 // 
 
 
@@ -23,10 +23,9 @@ import './preview.css'
 class Preview extends Component {
 
     render() {
-
+        console.log('this are the props in preview : ', this.props.scriptures);
         return (
             <div>
-
                 <Jumbotron id="jumbo" >
                     <div id="jumboInfo" className="mt-4 pt-5" >
                         <h1 className="text-center text-black mt-5 pt-5 headerOne" >Crypto Scriptures</h1>
@@ -40,7 +39,7 @@ class Preview extends Component {
                     </div>
                 </Jumbotron>
                 {/* START OF WORK SECTION */}
-                {/* <TopScriptures /> */}
+                
                 <section className="work" id="work">
 
                     <Container>
@@ -98,7 +97,7 @@ class Preview extends Component {
 
                 </section>
 
-
+                <TopScriptures />
 
                 {/* END OF WORK SECTION */}
                 <Container>
