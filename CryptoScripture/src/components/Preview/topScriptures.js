@@ -1,18 +1,32 @@
 import React, { Component } from 'react';
 import OwlCarousel from 'react-owl-carousel';
-import ScriptureFeedBox from '../Scriptures/ScriptureFeed';
 
-import '../Scriptures/ScriptureBox.css';
 import Image from 'react-bootstrap/Image';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Identicon from 'identicon.js';
+import '../Scriptures/ScriptureBox.css';
+// import Image from 'react-bootstrap/Image';
+
+import ScriptureBox from '../Scriptures/ScriptureBox.js'
+
+import ScriptureFeedBox from '../Scriptures/ScriptureFeed.js';
 
 
 import whiteLine from '../assets/images/white-line.png';
 
 
 class TopScriptures extends Component {
+    async componentWillMount() {
+        
+        await this.props
+        console.log('WAITING FOR THEM PROPS', this.props)
 
+        this.setState({top5 : this.props.top5scripture})
+      }
+ 
     render() {
-        console.log('fhjdsgfjhs',this.props.top5scripture[0]);
+        console.log('fhjdsgfjhs', this.props.top5scripture[0]);
 
         // OwlCarousel Option for Prices
         const options = {
@@ -51,41 +65,87 @@ class TopScriptures extends Component {
         ];
 
         // Dynamic Price Data Loop
-// if(this.state)
-    
+        // if(this.state)
+
         let DataList = this.props.top5scripture.map((val, i) => {
             // this.props.top5scripture
             console.log("VALUE : ", val)
+            let scriptData = val;
 
-            
             return (
- 
-                <div className="item" key={i}>
-                    
-                    <div className="package-box">
-                        <h3>{val.title}</h3>
-                        <div className="price-box">
-                            
-                            <Image src={`https://ipfs.infura.io/ipfs/${val.hash}`} alt="Logo" className="picture" />
-                            <h2>{val.price}</h2>
-                            <h5 className="plan-clr">
-                                <span className="d-block">Year</span>
-                            </h5>
-                        </div>
-                        <div className="price-plan text-center">
-                            <ul>
-                                <li>{val.lable}</li>
-                                <li>real time sync</li>
-                                <li>unlimited attachment</li>
-                                <li>customize theme</li>
+
+                <div>
+                    <Col  key={i}>
+                        <div className="card mb-4" key={val.hash}>
+                            <div className="card-header">
+                            {/* <Image src={`data:image/png;base64,${new Identicon(val.author, 30).toString()}`} alt="Logo" className=" mr-2" width='30' height='30'>
+                                </Image> */}
+                                <small className="text-muted">{val.author}</small>
+                            </div>
+                            <ul id="imageList" className="list-group list-group-flush">
+                                <li className="list-group-item">
+                                    <p className="text-center"><img src={`https://ipfs.infura.io/ipfs/${val.hash}`} style={{ maxWidth: '420px' }} /></p>
+                                    <p>{val.description}</p>
+                                </li>
+                                <li className="list-group-item py-2">
+                                    <strong>Price: {window.web3.utils.fromWei(val.tipAmount.toString(), 'Ether')} ETH</strong>
+                                    <br></br>
+                                    {val.title}
+                                    <br></br>
+                                    <big className="float-left mt-1 text-muted">
+                                        {val.text}
+                                    </big>
+
+                                </li>
+                                <li className="list-group-item py-2">
+                                    <small className="float-left mt-1 text-muted">
+                                        TIPS: {window.web3.utils.fromWei(val.tipAmount.toString(), 'Ether')} ETH
+  </small>
+                                    <button
+                                        className="btn btn-link btn-sm float-right pt-0"
+                                        name={val.id}
+                                        onClick={(event) => {
+
+                                            let tipAmount = window.web3.utils.toWei('1', 'Ether')
+                                            console.log(event.target.name, tipAmount)
+                                            val.tipImageOwner(event.target.name, tipAmount)
+                                        }}
+                                    >
+                                        TIP 0.1 ETH
+  </button>
+                                </li>
                             </ul>
-                            <div className="price-plan-btn">Select Plan</div>
                         </div>
-                    </div>
+
+                    </Col>
                 </div>
+
+                // <div className="item" key={i}>
+                //     {/* <ScriptureFeedBox top5scripture={scriptData}/> */}
+                //     <div className="package-box">
+                //         <h3>{val.title}</h3>
+                //         <div className="price-box">
+
+                //             <Image src={`https://ipfs.infura.io/ipfs/${val.hash}`} alt="Logo" className="picture" />
+                //             <h2>{val.price}</h2>
+                //             <h5 className="plan-clr">
+                //                 <span className="d-block">Year</span>
+                //             </h5>
+                //         </div>
+                //         <div className="price-plan text-center">
+                //             <ul>
+                //                 <li>{val.lable}</li>
+                //                 <li>real time sync</li>
+                //                 <li>unlimited attachment</li>
+                //                 <li>customize theme</li>
+                //             </ul>
+                //             <div className="price-plan-btn">Select Plan</div>
+                //         </div>
+                //     </div>
+                // </div>
             );
         });
-
+console.log('sjkdhfkjdshfjksdhfjkdshf -endhsdkhfdjkshf ')
         return (
 
             <section className="topScripture">

@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image';
 import Identicon from 'identicon.js';
 
 const ScriptureFeedBox = (props) => {
+    console.log('INSIDE OF SCRIPTURE FEED BOX ---', props);
     return (
         <Col lg={6}>
             {props.children}
@@ -87,33 +88,7 @@ const proofOfAuthenticity = (props) => {
 }
 const scriptureFeedBody = (props) => {
     console.log('FEED BOX DATA: ', props.scriptures)
-    // console.log('FEED BOX API: ', props.apiUserData.image)
 
-
-    // let image = props.apiUserData.image;
-
-    // let image="";
-    // let name = `${pr ops.apiUserData.name.first} ${props.apiUserData.name.last}`
-    // let name="";
-    // let handle = props.apiUserData.handle
-
-    // let handle=""
-    //   <li key={key} className="list-group-item py-2">
-    //   <small className="float-left mt-1 text-muted">
-    //     TIPS: {window.web3.utils.fromWei(image.tipAmount.toString(), 'Ether')} ETH
-    //   </small>
-    //   <button
-    //     className="btn btn-link btn-sm float-right pt-0"
-    //     name={image.id}
-    //     onClick={(event) => {
-    //       let tipAmount = window.web3.utils.toWei('0.1', 'Ether')
-    //       console.log(event.target.name, tipAmount)
-    //       this.props.tipImageOwner(event.target.name, tipAmount)
-    //     }}
-    //   >
-    //     TIP 0.1 ETH
-    //   </button>
-    // </li>
 
 
     return (
