@@ -23,12 +23,18 @@ import './preview.css'
 class Preview extends Component {
 
     render() {
-        console.log('this are the props in preview : ', this.props.scriptures);
+        console.log('this are the props in preview : ', this.props.top5scriptures);
         return (
             <div>
+                
                 <Jumbotron id="jumbo" >
                     <div id="jumboInfo" className="mt-4 pt-5" >
-                        <h1 className="text-center sectionTitle mt-5 pt-5 headerOne" >Crypto Scriptures</h1>
+                        <Row>
+                            <Col sm={12} md={12}>
+                            <h1 className="text-center  mt-5 pt-5 headerOne" >Nomad Capital</h1>
+                            </Col>
+                        </Row>
+                        {/* <h1 className="text-center  mt-5 pt-5 headerOne" >Crypto Scriptures</h1> */}
                         <h5 className="text-center text-white mt-5">
                             Buy, sell, and discover rare digital items from authors all over the world.
                     </h5>
@@ -46,7 +52,7 @@ class Preview extends Component {
                         <Row>
                             <Col sm={12} md={12} className="text-center">
                                 <div className="sectionTitle">
-                                    <h2>How Crypture Scripture Works</h2>
+                                    <h1 className="headTwo">How We Work</h1>
                                     <Image src={whiteLine} />
                                     <p className="pt-4">Art is subjective.</p>
                                     <p>Yet all art has value. Whether it be from a well known artist to an up and coming artist from New York. The people Decide the value. We simply allow the means for people to buy and share their art in a safe and secure environment. For the people, from the people.</p>
@@ -97,7 +103,7 @@ class Preview extends Component {
 
                 </section>
 
-                <TopScriptures />
+                <TopScriptures top5scripture={this.props.top5scriptures}/>
 
                 {/* END OF WORK SECTION */}
                 <Container>

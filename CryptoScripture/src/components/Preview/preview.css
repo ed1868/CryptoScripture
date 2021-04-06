@@ -18,7 +18,15 @@
     color:black;
 }
 
+.headTwo{
+    font-size: 50px;
+    color: #5f57ea; 
+}
 
+.topScripture{
+    background-image: url('https://pixelz.cc/wp-content/uploads/2018/10/blue-pink-gradient-uhd-4k-wallpaper.jpg');
+    background-repeat: no-repeat;
+}
 
 .info {
     width: 35%;

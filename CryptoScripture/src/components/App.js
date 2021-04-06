@@ -213,7 +213,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: true
+      preview: false
     }
 
 
@@ -237,6 +237,7 @@ class App extends Component {
           { this.state.loading
             ? <div id="loader" className="text-center mt-5"><p>Loading...</p></div>
             :
+
             <Preview account={this.state.account} top5scriptures={this.state.top5scriptures} />
           }
         </div>
