@@ -73,7 +73,7 @@ class TopScriptures extends Component {
                 <div className="row">
                     <div className="col-md-12 text-center">
                         <div className="section-title">
-                            <h2 className="text-white">Our Pricing Plans</h2>
+                            <h2 className="text-white">Top Scriptures</h2>
                             <img src="assets/images/white-line.png" alt="title-line" className="img-fluid" />
                         </div>
                     </div>
