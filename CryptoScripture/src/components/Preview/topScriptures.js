@@ -18,13 +18,13 @@ import whiteLine from '../assets/images/white-line.png';
 
 class TopScriptures extends Component {
     async componentWillMount() {
-        
+
         await this.props
         console.log('WAITING FOR THEM PROPS', this.props)
 
-        this.setState({top5 : this.props.top5scripture})
-      }
- 
+        this.setState({ top5: this.props.top5scripture })
+    }
+
     render() {
         console.log('fhjdsgfjhs', this.props.top5scripture[0]);
 
@@ -75,10 +75,10 @@ class TopScriptures extends Component {
             return (
 
                 <div>
-                    <Col  key={i}>
+                    <Col key={i}>
                         <div className="card mb-4" key={val.hash}>
                             <div className="card-header">
-                            {/* <Image src={`data:image/png;base64,${new Identicon(val.author, 30).toString()}`} alt="Logo" className=" mr-2" width='30' height='30'>
+                                {/* <Image src={`data:image/png;base64,${new Identicon(val.author, 30).toString()}`} alt="Logo" className=" mr-2" width='30' height='30'>
                                 </Image> */}
                                 <small className="text-muted">{val.author}</small>
                             </div>
@@ -145,7 +145,7 @@ class TopScriptures extends Component {
                 // </div>
             );
         });
-console.log('sjkdhfkjdshfjksdhfjkdshf -endhsdkhfdjkshf ')
+        console.log('sjkdhfkjdshfjksdhfjkdshf -endhsdkhfdjkshf ')
         return (
 
             <section className="topScripture">
