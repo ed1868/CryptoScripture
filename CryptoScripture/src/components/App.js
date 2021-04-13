@@ -27,13 +27,9 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 //TODO : ADD PAGE WITH DESCRIPTION WHEN PEOPLE DONT HAVE ETHEREUM WALLETS LIKE METABASE
 //TODO : ADD FOOTER
 //TODO : ADD SLIDER EXAMPLE
-//TODO : ADD HASHTAG 
-//TODO : ADD CHARACTER COUNT 
 //TODO : BETTER STYLING FOR SHOWCASING
 //TODO : FIGURE OUT TOKEN TRANSFERING
 //TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
-//TODO : MAKE THE WORK SECTION AND REACT COMPONENTS WORK (SWITCH TO REACT-BOOTSTRAP)
-//TODO : CHANGE HEADER PICTURE
 
 
 class App extends Component {
@@ -213,7 +209,7 @@ class App extends Component {
       images: [],
       users: [],
       loading: true,
-      preview: true
+      preview: false
     }
 
 

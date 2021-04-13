@@ -134,6 +134,10 @@ const scriptureFeedBody = (props) => {
                             TIP 0.1 ETH
           </button>
                     </li>
+
+                    <li className="list-group-item py-2">
+                        <i>Signature of Ownership: {props.scriptures.author} </i>
+                    </li>
                 </ul>
             </div>
 
