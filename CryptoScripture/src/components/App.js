@@ -6,6 +6,8 @@ import Header from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
 import './App.css';
+import Footer from './Partials/Footer';
+
 
 
 
@@ -236,6 +238,7 @@ class App extends Component {
 
             <Preview account={this.state.account} top5scriptures={this.state.top5scriptures} />
           }
+                      <Footer />
         </div>
       )
     } else {
@@ -257,7 +260,10 @@ class App extends Component {
 
             />
 
+
+
           }
+          <Footer />
         </div>
       );
     }
