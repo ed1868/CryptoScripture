@@ -16,6 +16,7 @@ import cryptoThree from '../assets/images/icon/3.png'
 
 import TopScriptures from './topScriptures.js';
 // 
+import Squad from './Squad';
 
 
 import './preview.css'
@@ -26,7 +27,7 @@ class Preview extends Component {
         console.log('this are the props in preview : ', this.props.top5scriptures);
         return (
             <div>
-                
+                <Squad />
                 <Jumbotron id="jumbo" >
                     <div id="jumboInfo" className="mt-4 pt-5" >
                         <Row>

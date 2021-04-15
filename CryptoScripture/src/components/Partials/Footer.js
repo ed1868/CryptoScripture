@@ -32,7 +32,7 @@ class Footer extends React.Component {
                             </div>
                         </div>
                         <div className="col-md-12 text-center">
-                            <p className="copyright">2018-19 Copyright by themeforest Powered by Pixelstrep</p>
+                            <p className="copyright">2021-22 Copyright by AI Nomads Powered by Artificial Intelligence</p>
                         </div>
                     </div>
                 </div>
