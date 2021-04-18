@@ -30,7 +30,8 @@ const ipfs = ipfsClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' 
 //TODO : ADD SLIDER EXAMPLE
 //TODO : BETTER STYLING FOR SHOWCASING
 //TODO : FIGURE OUT TOKEN TRANSFERING
-//TODO : SIGNATURE OF "AUTHENTICIY" ON POST 
+//TODO : GET TEAM SECTION GOING
+
 
 
 class App extends Component {
