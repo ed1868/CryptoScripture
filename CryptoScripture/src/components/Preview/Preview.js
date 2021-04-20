@@ -27,7 +27,7 @@ class Preview extends Component {
         console.log('this are the props in preview : ', this.props.top5scriptures);
         return (
             <div>
-                <Squad />
+                {/* <Squad /> */}
                 <Jumbotron id="jumbo" >
                     <div id="jumboInfo" className="mt-4 pt-5" >
                         <Row>
@@ -108,10 +108,10 @@ class Preview extends Component {
 
                 {/* END OF WORK SECTION */}
                 <Container>
-                    <Row>
+                    <Row className="pt-2">
                         <Col sm={6} md={6}>
 
-                            <h1 className="sectionTitle headerOne">Explore Art</h1>
+                            <h1 className="sectionTitle headerOne pt-5">Explore Art</h1>
                             <p>An online community of makers, developers, and traders is pushing the art world into new territory.<br></br>
 
                                 <br></br>
