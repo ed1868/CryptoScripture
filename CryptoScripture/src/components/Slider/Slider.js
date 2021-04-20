@@ -5,7 +5,7 @@ import Identicon from 'identicon.js';
 import Navbar from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
-import './App.css';
+import './App.scss';
 
 //Declare IPFS
 const ipfsClient = require('ipfs-http-client')

@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Identicon from 'identicon.js';
-import '../Scriptures/ScriptureBox.css';
+import '../Scriptures/ScriptureBox.scss';
 // import Image from 'react-bootstrap/Image';
 
 import ScriptureBox from '../Scriptures/ScriptureBox.js'

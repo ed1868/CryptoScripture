@@ -5,7 +5,7 @@ import Identicon from 'identicon.js';
 import Header from './Navbar'
 import Main from './Main'
 import Web3 from 'web3';
-import './App.css';
+import './App.scss';
 import Footer from './Partials/Footer';
 
 

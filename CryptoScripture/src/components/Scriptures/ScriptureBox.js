@@ -1,4 +1,4 @@
-import './ScriptureBox.css';
+import './ScriptureBox.scss';
 
 import React from 'react';
 

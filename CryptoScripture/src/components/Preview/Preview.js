@@ -19,7 +19,7 @@ import TopScriptures from './topScriptures.js';
 import Squad from './Squad';
 
 
-import './preview.css'
+import './preview.scss'
 
 class Preview extends Component {
 
